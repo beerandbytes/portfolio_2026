@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ousama Merrakchi - Junior Full-Stack Developer Portfolio. Showcasing full-stack projects and technical skills.">
+    <meta name="keywords" content="full-stack developer, web developer, portfolio, JavaScript, React, Node.js">
+    <meta name="author" content="Ousama Merrakchi">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Ousama Merrakchi - Junior Full-Stack Developer">
+    <meta property="og:description" content="Portfolio showcasing full-stack development projects and skills">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="Ousama Merrakchi - Junior Full-Stack Developer">
+    <meta property="twitter:description" content="Portfolio showcasing full-stack development projects and skills">
+    <title>Ousama Merrakchi  - Junior Full-Stack Developer</title>
+    <link rel="icon" type="image/png" href="assets/images/logo.png">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo">
+                <img src="assets/images/logo.png" alt="Logo" class="logo-img">
+            </a>
+            <div class="nav-right">
+                <ul class="nav-menu" id="navMenu">
+                    <li class="nav-item">
+                        <a href="#home" class="nav-link" data-i18n="nav.home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#about" class="nav-link" data-i18n="nav.about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#skills" class="nav-link" data-i18n="nav.skills">Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#projects" class="nav-link" data-i18n="nav.projects">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#education" class="nav-link" data-i18n="nav.education">Education</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#experience" class="nav-link" data-i18n="nav.experience">Experience</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#languages" class="nav-link" data-i18n="nav.languages">Languages</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#contact" class="nav-link" data-i18n="nav.contact">Contact</a>
+                    </li>
+                    <li class="nav-item nav-item-lang">
+                        <div class="language-selector language-selector-mobile">
+                            <div class="lang-dropdown">
+                                <button class="lang-dropdown-btn" id="langDropdownMobile" aria-label="Select language" aria-expanded="false">
+                                    <img src="https://flagcdn.com/w20/gb.png" alt="English" class="lang-flag" id="langFlagMobile">
+                                    <span class="lang-code" id="langCodeMobile">EN</span>
+                                    <span class="lang-arrow">▼</span>
+                                </button>
+                                <ul class="lang-dropdown-menu" id="langDropdownMenuMobile">
+                                    <li>
+                                        <button class="lang-option" data-lang="es-ES" data-flag-url="https://flagcdn.com/w20/es.png">
+                                            <img src="https://flagcdn.com/w20/es.png" alt="Español" class="lang-flag">
+                                            <span class="lang-name">Español</span>
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button class="lang-option" data-lang="fr-FR" data-flag-url="https://flagcdn.com/w20/fr.png">
+                                            <img src="https://flagcdn.com/w20/fr.png" alt="Français" class="lang-flag">
+                                            <span class="lang-name">Français</span>
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button class="lang-option" data-lang="en-US" data-flag-url="https://flagcdn.com/w20/gb.png">
+                                            <img src="https://flagcdn.com/w20/gb.png" alt="English" class="lang-flag">
+                                            <span class="lang-name">English</span>
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="language-selector language-selector-desktop">
+                    <div class="lang-dropdown">
+                        <button class="lang-dropdown-btn" id="langDropdownDesktop" aria-label="Select language" aria-expanded="false">
+                            <img src="https://flagcdn.com/w20/gb.png" alt="English" class="lang-flag" id="langFlagDesktop">
+                            <span class="lang-code" id="langCodeDesktop">EN</span>
+                            <span class="lang-arrow">▼</span>
+                        </button>
+                        <ul class="lang-dropdown-menu" id="langDropdownMenuDesktop">
+                            <li>
+                                <button class="lang-option" data-lang="es-ES" data-flag-url="https://flagcdn.com/w20/es.png">
+                                    <img src="https://flagcdn.com/w20/es.png" alt="Español" class="lang-flag">
+                                    <span class="lang-name">Español</span>
+                                </button>
+                            </li>
+                            <li>
+                                <button class="lang-option" data-lang="fr-FR" data-flag-url="https://flagcdn.com/w20/fr.png">
+                                    <img src="https://flagcdn.com/w20/fr.png" alt="Français" class="lang-flag">
+                                    <span class="lang-name">Français</span>
+                                </button>
+                            </li>
+                            <li>
+                                <button class="lang-option" data-lang="en-US" data-flag-url="https://flagcdn.com/w20/gb.png">
+                                    <img src="https://flagcdn.com/w20/gb.png" alt="English" class="lang-flag">
+                                    <span class="lang-name">English</span>
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content fade-in">
+                <h1 class="hero-name" data-i18n="hero.title">Ousama Merrakchi </h1>
+                <h2 class="hero-title" data-i18n="hero.subtitle">Junior Full-Stack Developer</h2>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary" data-i18n="hero.viewProjects">View Projects</a>
+                    <a href="#contact" class="btn btn-secondary" data-i18n="hero.getInTouch">Get in Touch</a>
+                    <a href="#" class="btn btn-outline" id="downloadResume" data-i18n="hero.downloadResume">Download Resume</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title" data-i18n="about.title">About Me</h2>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="assets/images/photo.png" alt="Ousama Merrakchi" class="about-photo">
+                </div>
+                <div class="about-text">
+                    <p data-i18n="about.paragraph1">
+                        Desarrollador FullStack Junior Multilingüe en busca de su primer trabajo en la industria de software 
+                        o continuar en hardware (con más de 6 años de experiencia montando equipos).
+                    </p>
+                    <p data-i18n="about.paragraph2">
+                        Mi experiencia previa en gestión de productos, montaje de equipos y atención al cliente me ha 
+                        equipado con habilidades sólidas de comunicación, gestión de proyectos y mentalidad orientada 
+                        al cliente—todos activos valiosos en desarrollo. He completado con éxito cinco proyectos full-stack, 
+                        cada uno demostrando mi capacidad para aprender nuevas tecnologías y entregar aplicaciones 
+                        funcionales y fáciles de usar.
+                    </p>
+                    <p data-i18n="about.paragraph3">
+                        Estoy ansioso por unirme a un equipo de desarrollo donde pueda contribuir con mi perspectiva fresca, 
+                        fuerte ética de trabajo y compromiso con el aprendizaje continuo. Busco oportunidades para crecer 
+                        como desarrollador mientras aporto mi conocimiento empresarial y espíritu colaborativo a proyectos innovadores.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title" data-i18n="skills.title">Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3 class="skill-category-title" data-i18n="skills.frontend">Frontend</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/html5.svg" alt="HTML5" class="skill-icon">
+                            <span class="skill-name">HTML5</span>
+                        </div>
+                        <div class="skill-item">
+                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/css3.svg" alt="CSS3" class="skill-icon">
+                            <span class="skill-name">CSS3</span>
+                        </div>
+                        <div class="skill-item">
+                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/javascript.svg" alt="JavaScript" class="skill-icon">
+                            <span class="skill-name">JavaScript</span>
+                        </div>
+                        <div class="skill-item">
+                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/react.svg" alt="React" class="skill-icon">
+                            <span class="skill-name">React</span>
+                        </div>
+                        <div class="skill-item">
+                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/preact.svg" alt="Preact" class="skill-icon">
+                            <span class="skill-name">Preact</span>
+                        </div>
+                        <div class="skill-item">
+                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/bootstrap.svg" alt="Bootstrap" class="skill-icon">
+                            <span class="skill-name">Bootstrap</span>
+                        </div>
+                        <div class="skill-item">
+                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/vite.svg" alt="Vite" class="skill-icon">
+                            <span class="skill-name">Vite</span>
+                        </div>
+                        <div class="skill-item">
+                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/reactrouter.svg" alt="React Router" class="skill-icon" onerror="this.style.display='none'; this.nextElementSibling.style.marginLeft='0';">
+                            <span class="skill-name">React Router</span>
+                        </div>
+                        <div class="skill-item">
+                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/tailwindcss.svg" alt="Tailwind CSS" class="skill-icon">
+                            <span class="skill-name">Tailwind CSS</span>
+                        </div>
+                        <div class="skill-item">
+                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/framermotion.svg" alt="Framer Motion" class="skill-icon" onerror="this.style.display='none'; this.nextElementSibling.style.marginLeft='0';">
+                            <span class="skill-name">Framer Motion</span>
+                        </div>
+                        <div class="skill-item">
+                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/socketdotio.svg" alt="Socket.io" class="skill-icon">
+                            <span class="skill-name">Socket.io</span>
+                        </div>
+                        <div class="skill-item">
+                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/recharts.svg" alt="Recharts" class="skill-icon" onerror="this.style.display='none'; this.nextElementSibling.style.marginLeft='0';">
+                            <span class="skill-name">Recharts</span>
+                        </div>
+                        <div class="skill-item">
+                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/daisyui.svg" alt="DaisyUI" class="skill-icon" onerror="this.style.display='none'; this.nextElementSibling.style.marginLeft='0';">
+                            <span class="skill-name">DaisyUI</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3 class="skill-category-title" data-i18n="skills.backend">Backend</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/nodedotjs.svg" alt="Node.js" class="skill-icon">
+                            <span class="skill-name">Node.js</span>
+                        </div>
+                        <div class="skill-item">
+                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/deno.svg" alt="Deno" class="skill-icon">
+                            <span class="skill-name">Deno</span>
+                        </div>
+                        <div class="skill-item">
+                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/php.svg" alt="PHP" class="skill-icon">
+                            <span class="skill-name">PHP</span>
+                        </div>
+                        <div class="skill-item">
+                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/python.svg" alt="Python" class="skill-icon">
+                            <span class="skill-name">Python</span>
+                        </div>
+                        <div class="skill-item">
+                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/csharp.svg" alt="C#" class="skill-icon">
+                            <span class="skill-name">C#</span>
+                        </div>
+                        <div class="skill-item">
+                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/express.svg" alt="Express" class="skill-icon">
+                            <span class="skill-name">Express</span>
+                        </div>
+                        <div class="skill-item">
+                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/jsonwebtokens.svg" alt="JWT" class="skill-icon" onerror="this.style.display='none'; this.nextElementSibling.style.marginLeft='0';">
+                            <span class="skill-name">JWT</span>
+                        </div>
+                        <div class="skill-item">
+                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/swagger.svg" alt="Swagger" class="skill-icon">
+                            <span class="skill-name">Swagger</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3 class="skill-category-title" data-i18n="skills.databases">Databases</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/postgresql.svg" alt="PostgreSQL" class="skill-icon">
+                            <span class="skill-name">PostgreSQL</span>
+                        </div>
+                        <div class="skill-item">
+                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/mysql.svg" alt="MySQL" class="skill-icon">
+                            <span class="skill-name">MySQL</span>
+                        </div>
+                        <div class="skill-item">
+                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/deno.svg" alt="Deno KV" class="skill-icon">
+                            <span class="skill-name">Deno KV</span>
+                        </div>
+                        <div class="skill-item">
+                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/sqlite.svg" alt="SQLite" class="skill-icon">
+                            <span class="skill-name">SQLite</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3 class="skill-category-title" data-i18n="skills.frameworks">Frameworks & ORMs</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/drizzle.svg" alt="Drizzle ORM" class="skill-icon" onerror="this.style.display='none'; this.nextElementSibling.style.marginLeft='0';">
+                            <span class="skill-name">Drizzle ORM</span>
+                        </div>
+                        <div class="skill-item">
+                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/avalonia.svg" alt="Avalonia UI" class="skill-icon" onerror="this.style.display='none'; this.nextElementSibling.style.marginLeft='0';">
+                            <span class="skill-name">Avalonia UI</span>
+                        </div>
+                        <div class="skill-item">
+                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/zustand.svg" alt="Zustand" class="skill-icon" onerror="this.style.display='none'; this.nextElementSibling.style.marginLeft='0';">
+                            <span class="skill-name">Zustand</span>
+                        </div>
+                        <div class="skill-item">
+                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/radixui.svg" alt="Radix UI" class="skill-icon" onerror="this.style.display='none'; this.nextElementSibling.style.marginLeft='0';">
+                            <span class="skill-name">Radix UI</span>
+                        </div>
+                        <div class="skill-item">
+                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/fresh.svg" alt="Fresh" class="skill-icon" onerror="this.style.display='none'; this.nextElementSibling.style.marginLeft='0';">
+                            <span class="skill-name">Fresh</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3 class="skill-category-title" data-i18n="skills.devops">DevOps</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/docker.svg" alt="Docker" class="skill-icon">
+                            <span class="skill-name">Docker</span>
+                        </div>
+                        <div class="skill-item">
+                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/docker.svg" alt="Docker Compose" class="skill-icon">
+                            <span class="skill-name">Docker Compose</span>
+                        </div>
+                        <div class="skill-item">
+                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/nginx.svg" alt="Nginx" class="skill-icon">
+                            <span class="skill-name">Nginx</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3 class="skill-category-title" data-i18n="skills.tools">Tools</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/git.svg" alt="Git" class="skill-icon">
+                            <span class="skill-name">Git</span>
+                        </div>
+                        <div class="skill-item">
+                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/github.svg" alt="GitHub" class="skill-icon">
+                            <span class="skill-name">GitHub</span>
+                        </div>
+                        <div class="skill-item">
+                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/visualstudiocode.svg" alt="VS Code" class="skill-icon">
+                            <span class="skill-name">VS Code</span>
+                        </div>
+                        <div class="skill-item">
+                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/visualstudio.svg" alt="Visual Studio" class="skill-icon">
+                            <span class="skill-name">Visual Studio</span>
+                        </div>
+                        <div class="skill-item">
+                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/sheetjs.svg" alt="SheetJS" class="skill-icon" onerror="this.style.display='none'; this.nextElementSibling.style.marginLeft='0';">
+                            <span class="skill-name">SheetJS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title" data-i18n="projects.title">Featured Projects</h2>
+            <div class="projects-grid" id="projectsGrid">
+                <!-- Projects will be dynamically inserted here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="education">
+        <div class="container">
+            <h2 class="section-title" data-i18n="education.title">Education</h2>
+            <div class="education-timeline">
+                <div class="education-item">
+                    <div class="education-date" data-i18n="education.item1.date">Diciembre 2025 – Presente</div>
+                    <div class="education-content">
+                        <h3 class="education-title" data-i18n="education.item1.title">AWS Certified Cloud Practitioner CLF-C02</h3>
+                        <p class="education-institution" data-i18n="education.item1.institution">English (En progreso)</p>
+                    </div>
+                </div>
+                <div class="education-item">
+                    <div class="education-date" data-i18n="education.item2.date">Marzo 2024 – Diciembre 2025</div>
+                    <div class="education-content">
+                        <h3 class="education-title" data-i18n="education.item2.title">FullStack Development</h3>
+                        <p class="education-institution" data-i18n="education.item2.institution">MasterD Castellón</p>
+                        <p class="education-description" data-i18n="education.item2.description">
+                            HTML, CSS, JS, PHP, APACHE, SQL, MYSQL, POSTGRESQL, PYTHON, EXPRESS JS, REACT, VUE, ANGULAR, 
+                            BOOTSTRAP, MATERIAL UI, WORDPRESS, NODEJS, MONGODB, JOOMLA
+                        </p>
+                    </div>
+                </div>
+                <div class="education-item">
+                    <div class="education-date" data-i18n="education.item3.date">Septiembre 2016 - Junio 2017</div>
+                    <div class="education-content">
+                        <h3 class="education-title" data-i18n="education.item3.title">Ingeniería Informática</h3>
+                        <p class="education-institution" data-i18n="education.item3.institution">UJI Castellón</p>
+                        <p class="education-description" data-i18n="education.item3.description">
+                            Ensamblador en C, Java y Python con POO, data structures y patterns.
+                        </p>
+                    </div>
+                </div>
+                <div class="education-item">
+                    <div class="education-date" data-i18n="education.item4.date">Septiembre 2015 – Mayo 2016</div>
+                    <div class="education-content">
+                        <h3 class="education-title" data-i18n="education.item4.title">Bachillerato Científico Sanitario</h3>
+                        <p class="education-institution" data-i18n="education.item4.institution">IES Benigaslo La Vall Uixó</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience">
+        <div class="container">
+            <h2 class="section-title" data-i18n="experience.title">Experience</h2>
+            <div class="experience-timeline">
+                <div class="experience-item">
+                    <div class="experience-date">Abril 2025 - Septiembre 2025</div>
+                    <div class="experience-content">
+                        <h3 class="experience-title">Comercial IT, Product Manager y Técnico de montaje + RMA</h3>
+                        <p class="experience-company">SLIMBOOK - PATERNA, VALENCIA</p>
+                        <p class="experience-description">
+                            Gestión integral de operaciones comerciales y técnicas:
+                        </p>
+                        <ul class="experience-list">
+                            <li>Gestión de pedidos, stocks y clientes con Odoo</li>
+                            <li>Análisis y planificación de campañas</li>
+                            <li>Gestión de proveedores nacionales y marcas principales como Micron, MSI, Adata, ASUS, Gigabyte, etc.</li>
+                            <li>Montaje de ordenadores de sobremesa / NAS para Workstation y ensamblado de portátiles</li>
+                            <li>Instalación y puesta en marcha de S.O como W11, Ubuntu, Fedora, Manjaro, Debian, Linux Mint, Proxmox, TrueNAS, etc.</li>
+                            <li>Organización y captación de clientes en eventos como Meta World Madrid 2025 y OWN Valencia 2025</li>
+                            <li>Soporte remoto y atención al cliente en troubleshooting de averías, recambio, mantenimiento y puesta en marcha de equipos averiados</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="experience-item">
+                    <div class="experience-date">Octubre 2024 - Enero 2025</div>
+                    <div class="experience-content">
+                        <h3 class="experience-title">Comercial Telecomunicaciones</h3>
+                        <p class="experience-company">AMFYTECH S.L - LA VALL D'UIXO</p>
+                        <p class="experience-description">
+                            Gestión comercial y técnica en telecomunicaciones:
+                        </p>
+                        <ul class="experience-list">
+                            <li>Gestión de contabilidad, pedidos y creación de CRM</li>
+                            <li>Prospección de clientes a puerta fría, cold mailing, cold calling y LinkedIn</li>
+                            <li>Venta de equipos de infraestructura de red switches gestionables, racks, maquetación de esquemas de puntos de acceso y canalización de fibra óptica</li>
+                            <li>Venta de equipos de vigilancia y controles de acceso</li>
+                            <li>Redacción y preparación de anexos para licitaciones públicas</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="experience-item">
+                    <div class="experience-date">Junio 2024 - Agosto 2024</div>
+                    <div class="experience-content">
+                        <h3 class="experience-title">Mozo de Almacén</h3>
+                        <p class="experience-company">AMAZON VLC1 - ONDA, CASTELLÓN</p>
+                        <p class="experience-description">
+                            Gestión de stock, ubicación y preparación de pedidos.
+                        </p>
+                    </div>
+                </div>
+                <div class="experience-item">
+                    <div class="experience-date">Marzo 2023 - Marzo 2024</div>
+                    <div class="experience-content">
+                        <h3 class="experience-title">Gestión del canal de IBERIA (España, Portugal) y Sur de Francia</h3>
+                        <p class="experience-company">DeepCool Beijing CO LTD (Remoto)</p>
+                        <p class="experience-description">
+                            Gestión integral del canal IBERIA:
+                        </p>
+                        <ul class="experience-list">
+                            <li>Gestión de pedidos de contenedor, distribuidores como Globomatik y CompuSpain, cuentas B2B como Coolmod, PcComponentes, Wipoid, etc.</li>
+                            <li>Planificación de campañas, stocks, sellouts, MDF</li>
+                            <li>Análisis de rotaciones de productos, tasas de RMA y forecast de demanda</li>
+                            <li>Visitas mensuales a clientes realizando customer success y recogiendo todo el feedback posible para HQ</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="experience-item">
+                    <div class="experience-date">Diciembre 2022 – Febrero 2023</div>
+                    <div class="experience-content">
+                        <h3 class="experience-title">Técnico de RMA</h3>
+                        <p class="experience-company">COOLMOD INFORMÁTICA - ALMAZORA, CASTELLÓN</p>
+                        <p class="experience-description">
+                            Gestión técnica de garantías y soporte:
+                        </p>
+                        <ul class="experience-list">
+                            <li>Gestión de RMA, reembolsos y soporte remoto</li>
+                            <li>Diagnóstico y testeo de componentes</li>
+                            <li>Gestión de tramitaciones de proveedores tanto nacionales como internacionales</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="experience-item">
+                    <div class="experience-date">Enero 2022 - Diciembre 2022</div>
+                    <div class="experience-content">
+                        <h3 class="experience-title">Product Manager</h3>
+                        <p class="experience-company">COOLMOD INFORMÁTICA - ALMAZORA, CASTELLÓN</p>
+                        <p class="experience-description">
+                            Gestión de productos y familias de hardware:
+                        </p>
+                        <ul class="experience-list">
+                            <li>Gestión de productos y familias de torres, fuentes de alimentación, memorias RAM, procesadores, tarjetas gráficas, periféricos, etc.</li>
+                            <li>Gestión de stock, compras, rotaciones de producto</li>
+                            <li>Planificación de campañas de promoción, campañas de liquidación</li>
+                            <li>Acciones de Marketing con NVIDIA, AMD, Cooler Master para ensamblado de equipos para streamers como Illojuan, ElXokas, etc.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="experience-item">
+                    <div class="experience-date">Junio 2020 – Enero 2022</div>
+                    <div class="experience-content">
+                        <h3 class="experience-title">Jefe de Taller en Ensamblado de Equipos</h3>
+                        <p class="experience-company">COOLMOD INFORMÁTICA - ALMAZORA, CASTELLÓN</p>
+                        <p class="experience-description">
+                            Liderazgo técnico en ensamblado:
+                        </p>
+                        <ul class="experience-list">
+                            <li>Gestión de cola de montaje, personal y reparto de carga de trabajo</li>
+                            <li>Resolución y gestión de pedidos para que se puedan montar los equipos sin incompatibilidades y cumpliendo con las exigencias del cliente</li>
+                            <li>Montaje, instalación y testeo de equipos de sobremesa y portátiles</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="experience-item">
+                    <div class="experience-date">Enero 2019 – Junio 2020</div>
+                    <div class="experience-content">
+                        <h3 class="experience-title">Técnico de Taller</h3>
+                        <p class="experience-company">COOLMOD INFORMÁTICA - ALMAZORA, CASTELLÓN</p>
+                        <p class="experience-description">
+                            Resolución y gestión de pedidos para que se puedan montar los equipos sin incompatibilidades y cumpliendo con las exigencias del cliente. Montaje, instalación y testeo de equipos de sobremesa y portátiles.
+                        </p>
+                    </div>
+                </div>
+                <div class="experience-item">
+                    <div class="experience-date">Junio 2018 – Octubre 2018</div>
+                    <div class="experience-content">
+                        <h3 class="experience-title">Prácticas Backend</h3>
+                        <p class="experience-company">JMI Bruxelles (Bélgica)</p>
+                        <p class="experience-description">
+                            Experiencia temprana en desarrollo backend:
+                        </p>
+                        <ul class="experience-list">
+                            <li>Mocking, wireframing y prototype de aplicación móvil</li>
+                            <li>Diseño y creación de base de datos con MySQL WorkBench</li>
+                            <li>Backend gestionado con yii2 PHP y composer</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Languages Section -->
+    <section id="languages" class="languages">
+        <div class="container">
+            <h2 class="section-title" data-i18n="languages.title">Languages</h2>
+            <div class="languages-grid">
+                <div class="language-item" data-level="C2">
+                    <span class="language-name">Español (Castellano)</span>
+                    <span class="language-level">Nativo (C2)</span>
+                </div>
+                <div class="language-item" data-level="C2">
+                    <span class="language-name">Francés</span>
+                    <span class="language-level">Nativo (C2)</span>
+                </div>
+                <div class="language-item" data-level="C1">
+                    <span class="language-name">Inglés</span>
+                    <span class="language-level">Alto (C1)</span>
+                </div>
+                <div class="language-item" data-level="A2">
+                    <span class="language-name">Árabe</span>
+                    <span class="language-level">Básico (A2)</span>
+                </div>
+                <div class="language-item" data-level="B2">
+                    <span class="language-name">Catalán</span>
+                    <span class="language-level">Intermedio (B2)</span>
+                </div>
+                <div class="language-item" data-level="B2">
+                    <span class="language-name">Valenciano</span>
+                    <span class="language-level">Intermedio (B2)</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title" data-i18n="contact.title">Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <p class="contact-text" data-i18n="contact.text">
+                        I'm currently looking for opportunities as a junior full-stack developer. 
+                        Whether you have a project in mind, want to collaborate, or just want to 
+                        connect, I'd love to hear from you!
+                    </p>
+                    <div class="social-links">
+                        <a href="https://github.com/beerandbytes" target="_blank" rel="noopener noreferrer" class="social-link">
+                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/github.svg" alt="GitHub" class="social-icon">
+                            <span>GitHub</span>
+                        </a>
+                        <a href="https://linkedin.com/in/ousama-merrakchi" target="_blank" rel="noopener noreferrer" class="social-link">
+                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/linkedin.svg" alt="LinkedIn" class="social-icon">
+                            <span>LinkedIn</span>
+                        </a>
+                        <a href="mailto:your.email@example.com" class="social-link">
+                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/gmail.svg" alt="Email" class="social-icon">
+                            <span>Email</span>
+                        </a>
+                    </div>
+                </div>
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="name" data-i18n="contact.name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" data-i18n="contact.email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message" data-i18n="contact.message">Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" data-i18n="contact.send">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p data-i18n="footer.copyright">&copy; 2024 Ousama Merrakchi. All rights reserved.</p>
+                <button class="back-to-top" id="backToTop" aria-label="Back to top">
+                    ↑
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.topology.min.js"></script>
+    <script src="js/i18n.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/animations.js"></script>
+    <script>
+        VANTA.TOPOLOGY({
+            el: "#home",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            scale: 1.00,
+            scaleMobile: 1.00,
+            color: 0xfa0303,
+            backgroundColor: 0x20202,
+            loop: true
+        })
+    </script>
+</body>
+</html>
