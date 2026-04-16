@@ -1,672 +1,977 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Ousama Merrakchi - Junior Full-Stack Developer Portfolio. Showcasing full-stack projects and technical skills.">
-    <meta name="keywords" content="full-stack developer, web developer, portfolio, JavaScript, React, Node.js">
-    <meta name="author" content="Ousama Merrakchi">
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Ousama Merrakchi - Junior Full-Stack Developer">
-    <meta property="og:description" content="Portfolio showcasing full-stack development projects and skills">
-    
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:title" content="Ousama Merrakchi - Junior Full-Stack Developer">
-    <meta property="twitter:description" content="Portfolio showcasing full-stack development projects and skills">
-    <title>Ousama Merrakchi  - Junior Full-Stack Developer</title>
-    <link rel="icon" type="image/png" href="assets/images/logo.png">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/animations.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ousama Merrakchi — FullStack Developer</title>
+  <link rel="shortcut icon" href="logo.png" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <style>
+    :root { --bg:#EDEAE2; --ink:#111010; }
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--bg);color:var(--ink);font-family:'DM Mono','Courier New',monospace;font-size:14px;line-height:1.6;cursor:none;overflow-x:hidden;}
+
+    .cursor{position:fixed;width:10px;height:10px;background:var(--ink);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,height .2s,background .2s,border .2s;}
+    .cursor.hover{width:38px;height:38px;background:transparent;border:2px solid var(--ink);}
+
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:20px 40px;background:var(--bg);border-bottom:1.5px solid var(--ink);}
+    .nav-logo{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.12em;color:var(--ink);text-decoration:none;}
+    .nav-links{display:flex;gap:36px;list-style:none;}
+    .nav-links a{font-size:12px;letter-spacing:.06em;text-decoration:none;color:var(--ink);position:relative;}
+    .nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1.5px;background:var(--ink);transition:width .3s ease;}
+    .nav-links a:hover::after{width:100%;}
+    .nav-loc{font-size:12px;letter-spacing:.06em;opacity:.5;}
+
+    /* ── HERO ── */
+    .hero{min-height:100vh;padding-top:64px;display:flex;flex-direction:column;}
+
+    .hero-ide{
+      flex:1;
+      display:grid;
+      grid-template-columns:1fr 1px 1fr;
+      min-height:480px;
+    }
+
+    /* LEFT — editor */
+    .ide-editor{
+      display:flex;
+      flex-direction:column;
+      overflow:hidden;
+    }
+    .ide-topbar{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      padding:12px 20px;
+      border-bottom:1.5px solid var(--ink);
+      flex-shrink:0;
+    }
+    .ide-dot{width:11px;height:11px;border-radius:50%;border:1.5px solid var(--ink);}
+    .ide-dot.red{background:#111010;}
+    .ide-dot.yel{background:transparent;}
+    .ide-dot.grn{background:transparent;}
+    .ide-filename{font-size:11px;letter-spacing:.12em;opacity:.45;margin-left:8px;}
+    .ide-tabs{display:flex;gap:0;margin-left:auto;}
+    .ide-tab{
+      font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+      padding:4px 14px;border:1.5px solid var(--ink);border-bottom:none;
+      opacity:.35;transition:opacity .2s,background .2s,color .2s;
+      cursor:none;
+      margin-left:-1px;
+    }
+    .ide-tab.active{opacity:1;background:var(--ink);color:var(--bg);}
+    .ide-tab:hover{opacity:.7;}
+
+    .ide-code-wrap{
+      flex:1;
+      overflow:hidden;
+      padding:28px 0;
+      position:relative;
+    }
+    .ide-lines{
+      display:flex;
+      flex-direction:column;
+      gap:0;
+      padding:0 0 0 0;
+      font-size:12.5px;
+      line-height:1.75;
+      font-family:'DM Mono',monospace;
+    }
+    .code-line{
+      display:flex;
+      align-items:flex-start;
+      min-height:22px;
+    }
+    .line-num{
+      width:42px;
+      text-align:right;
+      padding-right:16px;
+      opacity:.18;
+      font-size:11px;
+      flex-shrink:0;
+      user-select:none;
+      padding-top:1px;
+    }
+    .line-code{
+      flex:1;
+      padding-right:20px;
+      white-space:pre;
+      letter-spacing:.01em;
+    }
+    /* syntax */
+    .t-kw{color:#111010;font-weight:700;}
+    .t-fn{color:#111010;font-style:italic;}
+    .t-str{color:#111010;opacity:.55;}
+    .t-tag{color:#111010;font-weight:700;}
+    .t-attr{color:#111010;opacity:.65;}
+    .t-val{color:#111010;opacity:.45;}
+    .t-cmt{opacity:.25;font-style:italic;}
+    .t-num{color:#111010;font-weight:500;}
+
+    .cursor-blink{
+      display:inline-block;
+      width:2px;height:14px;
+      background:var(--ink);
+      margin-left:1px;
+      vertical-align:middle;
+      animation:blink .9s step-end infinite;
+    }
+    @keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
+
+    /* divider */
+    .ide-divider{
+      background:var(--ink);
+      width:1.5px;
+      position:relative;
+    }
+    .ide-divider::before{
+      content:'PREVIEW';
+      position:absolute;
+      top:50%;
+      left:50%;
+      transform:translate(-50%,-50%) rotate(90deg);
+      font-size:9px;
+      letter-spacing:.2em;
+      opacity:.25;
+      white-space:nowrap;
+      background:var(--bg);
+      padding:4px 8px;
+    }
+
+    /* RIGHT — preview */
+    .ide-preview{
+      display:flex;
+      flex-direction:column;
+      overflow:hidden;
+    }
+    .preview-topbar{
+      display:flex;
+      align-items:center;
+      padding:12px 20px;
+      border-bottom:1.5px solid var(--ink);
+      gap:10px;
+      flex-shrink:0;
+    }
+    .preview-url{
+      flex:1;
+      font-size:10px;
+      letter-spacing:.08em;
+      opacity:.4;
+      border:1.5px solid var(--ink);
+      padding:4px 10px;
+      border-radius:2px;
+    }
+    .preview-refresh{
+      font-size:14px;opacity:.3;
+      animation:spin 1s linear infinite;
+      display:none;
+    }
+    .preview-refresh.active{display:block;}
+    @keyframes spin{to{transform:rotate(360deg);}}
+
+    .preview-canvas{
+      flex:1;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:40px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    /* ── PREVIEW COMPONENTS ── */
+    .preview-component{
+      position:absolute;
+      width:100%;
+      height:100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:40px;
+      opacity:0;
+      transform:translateY(12px);
+      transition:opacity .5s ease, transform .5s ease;
+      pointer-events:none;
+    }
+    .preview-component.visible{
+      opacity:1;
+      transform:translateY(0);
+      pointer-events:all;
+    }
+
+    /* COMPONENT 0 — Card */
+    .prev-card{
+      border:2px solid var(--ink);
+      padding:32px;
+      width:100%;
+      max-width:320px;
+      background:var(--bg);
+    }
+    .prev-card-avatar{
+      width:52px;height:52px;
+      border:2px solid var(--ink);
+      border-radius:50%;
+      display:flex;align-items:center;justify-content:center;
+      font-family:'Bebas Neue',sans-serif;font-size:18px;
+      margin-bottom:16px;
+    }
+    .prev-card-name{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:.05em;}
+    .prev-card-role{font-size:10px;letter-spacing:.12em;opacity:.45;text-transform:uppercase;margin-top:2px;margin-bottom:20px;}
+    .prev-card-tags{display:flex;flex-wrap:wrap;gap:6px;}
+    .prev-card-tag{font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border:1.5px solid var(--ink);}
+    .prev-card-btn{
+      margin-top:20px;width:100%;padding:12px;
+      background:var(--ink);color:var(--bg);
+      font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.1em;
+      border:none;text-align:center;
+      cursor:none;
+      transition:background .2s,color .2s;
+    }
+    .prev-card-btn:hover{background:var(--bg);color:var(--ink);border:1.5px solid var(--ink);}
+
+    /* COMPONENT 1 — Stat dashboard */
+    .prev-dash{width:100%;max-width:340px;}
+    .prev-dash-title{font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:.15em;opacity:.4;margin-bottom:20px;text-transform:uppercase;}
+    .prev-stat-row{display:flex;gap:12px;margin-bottom:12px;}
+    .prev-stat{
+      flex:1;border:1.5px solid var(--ink);padding:16px 12px;
+      position:relative;overflow:hidden;
+    }
+    .prev-stat-val{font-family:'Bebas Neue',sans-serif;font-size:38px;line-height:1;}
+    .prev-stat-lbl{font-size:9px;letter-spacing:.12em;opacity:.4;text-transform:uppercase;margin-top:2px;}
+    .prev-bar-wrap{margin-top:16px;border:1.5px solid var(--ink);}
+    .prev-bar-label{display:flex;justify-content:space-between;padding:8px 10px;font-size:9px;letter-spacing:.1em;opacity:.5;border-bottom:1px solid var(--ink);}
+    .prev-bar-track{height:6px;background:rgba(17,16,16,.1);position:relative;overflow:hidden;}
+    .prev-bar-fill{height:100%;background:var(--ink);transition:width 1.2s cubic-bezier(.16,1,.3,1);}
+
+    /* COMPONENT 2 — Form */
+    .prev-form{width:100%;max-width:300px;}
+    .prev-form-title{font-family:'Bebas Neue',sans-serif;font-size:32px;margin-bottom:24px;letter-spacing:.03em;}
+    .prev-field{margin-bottom:16px;}
+    .prev-label{font-size:9px;letter-spacing:.14em;text-transform:uppercase;opacity:.45;margin-bottom:6px;display:block;}
+    .prev-input{
+      width:100%;padding:10px 12px;
+      border:1.5px solid var(--ink);
+      background:var(--bg);
+      font-family:'DM Mono',monospace;font-size:12px;
+      outline:none;
+      transition:border-color .2s;
+    }
+    .prev-input:focus{border-color:var(--ink);box-shadow:3px 3px 0 var(--ink);}
+    .prev-submit{
+      width:100%;padding:12px;background:var(--ink);color:var(--bg);
+      font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.1em;
+      border:none;cursor:none;
+      transition:transform .15s;
+    }
+    .prev-submit:hover{transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--ink);}
+
+    /* COMPONENT 3 — API response */
+    .prev-api{width:100%;max-width:340px;}
+    .prev-api-bar{
+      display:flex;align-items:center;gap:10px;
+      border:1.5px solid var(--ink);padding:10px 14px;
+      margin-bottom:0;border-bottom:none;
+    }
+    .prev-api-method{font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:.1em;}
+    .prev-api-url{font-size:10px;opacity:.45;letter-spacing:.06em;flex:1;}
+    .prev-api-status{font-size:9px;letter-spacing:.1em;padding:3px 8px;border:1.5px solid var(--ink);background:var(--ink);color:var(--bg);}
+    .prev-api-body{
+      border:1.5px solid var(--ink);
+      padding:16px;
+      font-size:11px;
+      line-height:1.7;
+      font-family:'DM Mono',monospace;
+    }
+    .api-key{opacity:.45;}
+    .api-val{font-weight:500;}
+    .api-typing::after{content:'|';animation:blink .9s step-end infinite;}
+
+    /* hero bottom */
+    .hero-taglines{display:flex;justify-content:space-between;padding:20px 40px;border-top:1.5px solid var(--ink);font-size:11px;letter-spacing:.14em;text-transform:uppercase;}
+    .hero-name{font-family:'Bebas Neue',sans-serif;font-size:clamp(72px,17.5vw,240px);line-height:.82;letter-spacing:-.01em;padding:6px 16px 0;border-top:1.5px solid var(--ink);}
+    .hero-name span{display:block;}
+
+    /* MARQUEE */
+    .marquee-wrap{overflow:hidden;padding:14px 0;background:var(--ink);color:var(--bg);border-top:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);}
+    .marquee-inner{display:flex;gap:56px;white-space:nowrap;animation:ticker 22s linear infinite;font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:.12em;}
+    @keyframes ticker{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+    .marquee-sep{opacity:.4;}
+
+    /* SECTIONS */
+    .section{padding:80px 40px;border-top:1.5px solid var(--ink);position:relative;}
+    .section-label{font-size:11px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:64px;display:flex;align-items:center;gap:14px;}
+    .section-label::before{content:'';display:inline-block;width:28px;height:1.5px;background:var(--ink);}
+    .ghost-num{font-family:'Bebas Neue',sans-serif;font-size:clamp(100px,13vw,170px);line-height:1;color:transparent;-webkit-text-stroke:1.5px var(--ink);position:absolute;right:40px;top:70px;pointer-events:none;user-select:none;opacity:.25;}
+
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
+    .about-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,5.5vw,78px);line-height:1.02;letter-spacing:.02em;}
+    .about-body{font-size:14px;line-height:1.85;}
+    .about-body p+p{margin-top:1.4em;}
+    .about-meta{margin-top:40px;padding-top:40px;border-top:1px solid var(--ink);display:flex;flex-direction:column;gap:10px;}
+    .meta-row{display:flex;justify-content:space-between;font-size:12px;letter-spacing:.04em;}
+    .meta-key{opacity:.45;text-transform:uppercase;letter-spacing:.1em;}
+
+    .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:48px;}
+    .skill-cat h3{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:.06em;margin-bottom:18px;padding-bottom:12px;border-bottom:1.5px solid var(--ink);}
+    .skill-tags{display:flex;flex-wrap:wrap;gap:8px;}
+    .tag{display:inline-block;padding:6px 14px;border:1.5px solid var(--ink);font-size:11px;letter-spacing:.1em;text-transform:uppercase;transition:background .2s,color .2s;}
+    .tag:hover{background:var(--ink);color:var(--bg);}
+
+    .project-item{display:grid;grid-template-columns:64px 1fr auto;align-items:center;gap:36px;padding:28px 0;border-bottom:1.5px solid var(--ink);transition:padding-left .35s ease;}
+    .project-item:first-child{border-top:1.5px solid var(--ink);}
+    .project-item:hover{padding-left:18px;}
+    .proj-num{font-family:'Bebas Neue',sans-serif;font-size:36px;opacity:.28;}
+    .proj-name{font-family:'Bebas Neue',sans-serif;font-size:clamp(22px,3.8vw,46px);letter-spacing:.02em;line-height:1;}
+    .proj-stack{font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.55;text-align:right;}
+
+    .exp-item{display:grid;grid-template-columns:190px 1fr;gap:48px;padding:40px 0;border-bottom:1.5px solid var(--ink);}
+    .exp-item:first-child{border-top:1.5px solid var(--ink);}
+    .exp-date{font-size:12px;letter-spacing:.05em;opacity:.45;padding-top:5px;line-height:1.6;}
+    .exp-company{font-family:'Bebas Neue',sans-serif;font-size:30px;letter-spacing:.05em;margin-bottom:2px;}
+    .exp-role{font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.6;margin-bottom:16px;}
+    .exp-desc{font-size:13px;line-height:1.75;opacity:.78;}
+    .exp-desc li{margin-left:1.2em;margin-top:4px;}
+
+    .lang-wrap{display:grid;grid-template-columns:repeat(6,1fr);border-top:1.5px solid var(--ink);}
+    .lang-item{padding:28px 0 28px 20px;border-right:1.5px solid var(--ink);}
+    .lang-item:last-child{border-right:none;}
+    .lang-name{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:.05em;}
+    .lang-level{font-size:11px;letter-spacing:.1em;text-transform:uppercase;opacity:.45;margin-top:3px;}
+    .lang-bar{width:100%;height:3px;background:rgba(17,16,16,.12);margin-top:12px;overflow:hidden;}
+    .lang-fill{height:100%;background:var(--ink);}
+
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
+    .contact-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(56px,9vw,130px);line-height:.88;letter-spacing:.01em;}
+    .contact-email{font-family:'Bebas Neue',sans-serif;font-size:clamp(18px,2.2vw,28px);letter-spacing:.05em;margin-top:28px;opacity:.55;}
+    .contact-links{display:flex;flex-direction:column;}
+    .c-link{display:flex;align-items:center;justify-content:space-between;padding:18px 0;border-bottom:1.5px solid var(--ink);text-decoration:none;color:var(--ink);font-size:13px;letter-spacing:.06em;transition:padding-left .3s;}
+    .c-link:first-child{border-top:1.5px solid var(--ink);}
+    .c-link:hover{padding-left:14px;}
+    .c-link span{opacity:.45;font-size:20px;}
+
+    footer{border-top:1.5px solid var(--ink);padding:22px 40px;display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:.08em;}
+    footer .left{opacity:.4;}
+    footer .right{opacity:.4;}
+
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity .75s ease,transform .75s ease;}
+    .reveal.in{opacity:1;transform:translateY(0);}
+    .reveal-d1{transition-delay:.1s;}
+    .reveal-d2{transition-delay:.2s;}
+    .reveal-d3{transition-delay:.3s;}
+
+    @media(max-width:768px){
+      .hero-ide{grid-template-columns:1fr;grid-template-rows:1fr 1.5px 1fr;}
+      .ide-divider{width:100%;height:1.5px;}
+      .ide-divider::before{transform:translate(-50%,-50%) rotate(0deg);}
+      nav{padding:16px 20px;}
+      .nav-links{display:none;}
+      .hero-name{font-size:clamp(52px,18vw,160px);}
+      .hero-taglines{padding:14px 20px;flex-direction:column;gap:4px;}
+      .about-grid,.contact-grid{grid-template-columns:1fr;}
+      .lang-wrap{grid-template-columns:repeat(3,1fr);}
+      .section{padding:60px 20px;}
+    }
+  </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <a href="#home" class="nav-logo">
-                <img src="assets/images/logo.png" alt="Logo" class="logo-img">
-            </a>
-            <div class="nav-right">
-                <ul class="nav-menu" id="navMenu">
-                    <li class="nav-item">
-                        <a href="#home" class="nav-link" data-i18n="nav.home">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#about" class="nav-link" data-i18n="nav.about">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#skills" class="nav-link" data-i18n="nav.skills">Skills</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#projects" class="nav-link" data-i18n="nav.projects">Projects</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#education" class="nav-link" data-i18n="nav.education">Education</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#experience" class="nav-link" data-i18n="nav.experience">Experience</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#languages" class="nav-link" data-i18n="nav.languages">Languages</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#contact" class="nav-link" data-i18n="nav.contact">Contact</a>
-                    </li>
-                    <li class="nav-item nav-item-lang">
-                        <div class="language-selector language-selector-mobile">
-                            <div class="lang-dropdown">
-                                <button class="lang-dropdown-btn" id="langDropdownMobile" aria-label="Select language" aria-expanded="false">
-                                    <img src="https://flagcdn.com/w20/gb.png" alt="English" class="lang-flag" id="langFlagMobile">
-                                    <span class="lang-code" id="langCodeMobile">EN</span>
-                                    <span class="lang-arrow">▼</span>
-                                </button>
-                                <ul class="lang-dropdown-menu" id="langDropdownMenuMobile">
-                                    <li>
-                                        <button class="lang-option" data-lang="es-ES" data-flag-url="https://flagcdn.com/w20/es.png">
-                                            <img src="https://flagcdn.com/w20/es.png" alt="Español" class="lang-flag">
-                                            <span class="lang-name">Español</span>
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button class="lang-option" data-lang="fr-FR" data-flag-url="https://flagcdn.com/w20/fr.png">
-                                            <img src="https://flagcdn.com/w20/fr.png" alt="Français" class="lang-flag">
-                                            <span class="lang-name">Français</span>
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button class="lang-option" data-lang="en-US" data-flag-url="https://flagcdn.com/w20/gb.png">
-                                            <img src="https://flagcdn.com/w20/gb.png" alt="English" class="lang-flag">
-                                            <span class="lang-name">English</span>
-                                        </button>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-                <div class="language-selector language-selector-desktop">
-                    <div class="lang-dropdown">
-                        <button class="lang-dropdown-btn" id="langDropdownDesktop" aria-label="Select language" aria-expanded="false">
-                            <img src="https://flagcdn.com/w20/gb.png" alt="English" class="lang-flag" id="langFlagDesktop">
-                            <span class="lang-code" id="langCodeDesktop">EN</span>
-                            <span class="lang-arrow">▼</span>
-                        </button>
-                        <ul class="lang-dropdown-menu" id="langDropdownMenuDesktop">
-                            <li>
-                                <button class="lang-option" data-lang="es-ES" data-flag-url="https://flagcdn.com/w20/es.png">
-                                    <img src="https://flagcdn.com/w20/es.png" alt="Español" class="lang-flag">
-                                    <span class="lang-name">Español</span>
-                                </button>
-                            </li>
-                            <li>
-                                <button class="lang-option" data-lang="fr-FR" data-flag-url="https://flagcdn.com/w20/fr.png">
-                                    <img src="https://flagcdn.com/w20/fr.png" alt="Français" class="lang-flag">
-                                    <span class="lang-name">Français</span>
-                                </button>
-                            </li>
-                            <li>
-                                <button class="lang-option" data-lang="en-US" data-flag-url="https://flagcdn.com/w20/gb.png">
-                                    <img src="https://flagcdn.com/w20/gb.png" alt="English" class="lang-flag">
-                                    <span class="lang-name">English</span>
-                                </button>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </div>
-        </div>
-    </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-container">
-            <div class="hero-content fade-in">
-                <h1 class="hero-name" data-i18n="hero.title">Ousama Merrakchi </h1>
-                <h2 class="hero-title" data-i18n="hero.subtitle">Junior Full-Stack Developer</h2>
-                <div class="hero-buttons">
-                    <a href="#projects" class="btn btn-primary" data-i18n="hero.viewProjects">View Projects</a>
-                    <a href="#contact" class="btn btn-secondary" data-i18n="hero.getInTouch">Get in Touch</a>
-                    <a href="#" class="btn btn-outline" id="downloadResume" data-i18n="hero.downloadResume">Download Resume</a>
-                </div>
-            </div>
-        </div>
-    </section>
+<div class="cursor" id="cursor"></div>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <h2 class="section-title" data-i18n="about.title">About Me</h2>
-            <div class="about-content">
-                <div class="about-image">
-                    <img src="assets/images/photo.png" alt="Ousama Merrakchi" class="about-photo">
-                </div>
-                <div class="about-text">
-                    <p data-i18n="about.paragraph1">
-                        Desarrollador FullStack Junior Multilingüe en busca de su primer trabajo en la industria de software 
-                        o continuar en hardware (con más de 6 años de experiencia montando equipos).
-                    </p>
-                    <p data-i18n="about.paragraph2">
-                        Mi experiencia previa en gestión de productos, montaje de equipos y atención al cliente me ha 
-                        equipado con habilidades sólidas de comunicación, gestión de proyectos y mentalidad orientada 
-                        al cliente—todos activos valiosos en desarrollo. He completado con éxito cinco proyectos full-stack, 
-                        cada uno demostrando mi capacidad para aprender nuevas tecnologías y entregar aplicaciones 
-                        funcionales y fáciles de usar.
-                    </p>
-                    <p data-i18n="about.paragraph3">
-                        Estoy ansioso por unirme a un equipo de desarrollo donde pueda contribuir con mi perspectiva fresca, 
-                        fuerte ética de trabajo y compromiso con el aprendizaje continuo. Busco oportunidades para crecer 
-                        como desarrollador mientras aporto mi conocimiento empresarial y espíritu colaborativo a proyectos innovadores.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
+<nav>
+  <div class="nav-logo">OM™</div>
+  <ul class="nav-links">
+    <li><a href="#about">sobre mí</a></li>
+    <li><a href="#skills">skills</a></li>
+    <li><a href="#projects">proyectos</a></li>
+    <li><a href="#experience">experiencia</a></li>
+    <li><a href="#contact">contacto</a></li>
+  </ul>
+  <div class="nav-loc">La Vall D'Uixó · Castellón</div>
+</nav>
 
-    <!-- Skills Section -->
-    <section id="skills" class="skills">
-        <div class="container">
-            <h2 class="section-title" data-i18n="skills.title">Technical Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3 class="skill-category-title" data-i18n="skills.frontend">Frontend</h3>
-                    <div class="skill-items">
-                        <div class="skill-item">
-                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/html5.svg" alt="HTML5" class="skill-icon">
-                            <span class="skill-name">HTML5</span>
-                        </div>
-                        <div class="skill-item">
-                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/css3.svg" alt="CSS3" class="skill-icon">
-                            <span class="skill-name">CSS3</span>
-                        </div>
-                        <div class="skill-item">
-                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/javascript.svg" alt="JavaScript" class="skill-icon">
-                            <span class="skill-name">JavaScript</span>
-                        </div>
-                        <div class="skill-item">
-                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/react.svg" alt="React" class="skill-icon">
-                            <span class="skill-name">React</span>
-                        </div>
-                        <div class="skill-item">
-                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/preact.svg" alt="Preact" class="skill-icon">
-                            <span class="skill-name">Preact</span>
-                        </div>
-                        <div class="skill-item">
-                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/bootstrap.svg" alt="Bootstrap" class="skill-icon">
-                            <span class="skill-name">Bootstrap</span>
-                        </div>
-                        <div class="skill-item">
-                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/vite.svg" alt="Vite" class="skill-icon">
-                            <span class="skill-name">Vite</span>
-                        </div>
-                        <div class="skill-item">
-                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/reactrouter.svg" alt="React Router" class="skill-icon" onerror="this.style.display='none'; this.nextElementSibling.style.marginLeft='0';">
-                            <span class="skill-name">React Router</span>
-                        </div>
-                        <div class="skill-item">
-                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/tailwindcss.svg" alt="Tailwind CSS" class="skill-icon">
-                            <span class="skill-name">Tailwind CSS</span>
-                        </div>
-                        <div class="skill-item">
-                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/framermotion.svg" alt="Framer Motion" class="skill-icon" onerror="this.style.display='none'; this.nextElementSibling.style.marginLeft='0';">
-                            <span class="skill-name">Framer Motion</span>
-                        </div>
-                        <div class="skill-item">
-                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/socketdotio.svg" alt="Socket.io" class="skill-icon">
-                            <span class="skill-name">Socket.io</span>
-                        </div>
-                        <div class="skill-item">
-                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/recharts.svg" alt="Recharts" class="skill-icon" onerror="this.style.display='none'; this.nextElementSibling.style.marginLeft='0';">
-                            <span class="skill-name">Recharts</span>
-                        </div>
-                        <div class="skill-item">
-                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/daisyui.svg" alt="DaisyUI" class="skill-icon" onerror="this.style.display='none'; this.nextElementSibling.style.marginLeft='0';">
-                            <span class="skill-name">DaisyUI</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3 class="skill-category-title" data-i18n="skills.backend">Backend</h3>
-                    <div class="skill-items">
-                        <div class="skill-item">
-                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/nodedotjs.svg" alt="Node.js" class="skill-icon">
-                            <span class="skill-name">Node.js</span>
-                        </div>
-                        <div class="skill-item">
-                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/deno.svg" alt="Deno" class="skill-icon">
-                            <span class="skill-name">Deno</span>
-                        </div>
-                        <div class="skill-item">
-                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/php.svg" alt="PHP" class="skill-icon">
-                            <span class="skill-name">PHP</span>
-                        </div>
-                        <div class="skill-item">
-                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/python.svg" alt="Python" class="skill-icon">
-                            <span class="skill-name">Python</span>
-                        </div>
-                        <div class="skill-item">
-                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/csharp.svg" alt="C#" class="skill-icon">
-                            <span class="skill-name">C#</span>
-                        </div>
-                        <div class="skill-item">
-                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/express.svg" alt="Express" class="skill-icon">
-                            <span class="skill-name">Express</span>
-                        </div>
-                        <div class="skill-item">
-                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/jsonwebtokens.svg" alt="JWT" class="skill-icon" onerror="this.style.display='none'; this.nextElementSibling.style.marginLeft='0';">
-                            <span class="skill-name">JWT</span>
-                        </div>
-                        <div class="skill-item">
-                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/swagger.svg" alt="Swagger" class="skill-icon">
-                            <span class="skill-name">Swagger</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3 class="skill-category-title" data-i18n="skills.databases">Databases</h3>
-                    <div class="skill-items">
-                        <div class="skill-item">
-                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/postgresql.svg" alt="PostgreSQL" class="skill-icon">
-                            <span class="skill-name">PostgreSQL</span>
-                        </div>
-                        <div class="skill-item">
-                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/mysql.svg" alt="MySQL" class="skill-icon">
-                            <span class="skill-name">MySQL</span>
-                        </div>
-                        <div class="skill-item">
-                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/deno.svg" alt="Deno KV" class="skill-icon">
-                            <span class="skill-name">Deno KV</span>
-                        </div>
-                        <div class="skill-item">
-                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/sqlite.svg" alt="SQLite" class="skill-icon">
-                            <span class="skill-name">SQLite</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3 class="skill-category-title" data-i18n="skills.frameworks">Frameworks & ORMs</h3>
-                    <div class="skill-items">
-                        <div class="skill-item">
-                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/drizzle.svg" alt="Drizzle ORM" class="skill-icon" onerror="this.style.display='none'; this.nextElementSibling.style.marginLeft='0';">
-                            <span class="skill-name">Drizzle ORM</span>
-                        </div>
-                        <div class="skill-item">
-                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/avalonia.svg" alt="Avalonia UI" class="skill-icon" onerror="this.style.display='none'; this.nextElementSibling.style.marginLeft='0';">
-                            <span class="skill-name">Avalonia UI</span>
-                        </div>
-                        <div class="skill-item">
-                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/zustand.svg" alt="Zustand" class="skill-icon" onerror="this.style.display='none'; this.nextElementSibling.style.marginLeft='0';">
-                            <span class="skill-name">Zustand</span>
-                        </div>
-                        <div class="skill-item">
-                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/radixui.svg" alt="Radix UI" class="skill-icon" onerror="this.style.display='none'; this.nextElementSibling.style.marginLeft='0';">
-                            <span class="skill-name">Radix UI</span>
-                        </div>
-                        <div class="skill-item">
-                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/fresh.svg" alt="Fresh" class="skill-icon" onerror="this.style.display='none'; this.nextElementSibling.style.marginLeft='0';">
-                            <span class="skill-name">Fresh</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3 class="skill-category-title" data-i18n="skills.devops">DevOps</h3>
-                    <div class="skill-items">
-                        <div class="skill-item">
-                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/docker.svg" alt="Docker" class="skill-icon">
-                            <span class="skill-name">Docker</span>
-                        </div>
-                        <div class="skill-item">
-                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/docker.svg" alt="Docker Compose" class="skill-icon">
-                            <span class="skill-name">Docker Compose</span>
-                        </div>
-                        <div class="skill-item">
-                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/nginx.svg" alt="Nginx" class="skill-icon">
-                            <span class="skill-name">Nginx</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3 class="skill-category-title" data-i18n="skills.tools">Tools</h3>
-                    <div class="skill-items">
-                        <div class="skill-item">
-                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/git.svg" alt="Git" class="skill-icon">
-                            <span class="skill-name">Git</span>
-                        </div>
-                        <div class="skill-item">
-                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/github.svg" alt="GitHub" class="skill-icon">
-                            <span class="skill-name">GitHub</span>
-                        </div>
-                        <div class="skill-item">
-                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/visualstudiocode.svg" alt="VS Code" class="skill-icon">
-                            <span class="skill-name">VS Code</span>
-                        </div>
-                        <div class="skill-item">
-                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/visualstudio.svg" alt="Visual Studio" class="skill-icon">
-                            <span class="skill-name">Visual Studio</span>
-                        </div>
-                        <div class="skill-item">
-                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/sheetjs.svg" alt="SheetJS" class="skill-icon" onerror="this.style.display='none'; this.nextElementSibling.style.marginLeft='0';">
-                            <span class="skill-name">SheetJS</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<section class="hero">
+  <div class="hero-ide">
 
-    <!-- Projects Section -->
-    <section id="projects" class="projects">
-        <div class="container">
-            <h2 class="section-title" data-i18n="projects.title">Featured Projects</h2>
-            <div class="projects-grid" id="projectsGrid">
-                <!-- Projects will be dynamically inserted here -->
-            </div>
+    <!-- LEFT: CODE EDITOR -->
+    <div class="ide-editor">
+      <div class="ide-topbar">
+        <div class="ide-dot red"></div>
+        <div class="ide-dot yel"></div>
+        <div class="ide-dot grn"></div>
+        <span class="ide-filename">App.jsx</span>
+        <div class="ide-tabs">
+          <div class="ide-tab active" data-tab="0">Card</div>
+          <div class="ide-tab" data-tab="1">Dashboard</div>
+          <div class="ide-tab" data-tab="2">Form</div>
+          <div class="ide-tab" data-tab="3">API</div>
         </div>
-    </section>
+      </div>
+      <div class="ide-code-wrap">
+        <div class="ide-lines" id="codeLines"></div>
+      </div>
+    </div>
 
-    <!-- Education Section -->
-    <section id="education" class="education">
-        <div class="container">
-            <h2 class="section-title" data-i18n="education.title">Education</h2>
-            <div class="education-timeline">
-                <div class="education-item">
-                    <div class="education-date" data-i18n="education.item1.date">Diciembre 2025 – Presente</div>
-                    <div class="education-content">
-                        <h3 class="education-title" data-i18n="education.item1.title">AWS Certified Cloud Practitioner CLF-C02</h3>
-                        <p class="education-institution" data-i18n="education.item1.institution">English (En progreso)</p>
-                    </div>
-                </div>
-                <div class="education-item">
-                    <div class="education-date" data-i18n="education.item2.date">Marzo 2024 – Diciembre 2025</div>
-                    <div class="education-content">
-                        <h3 class="education-title" data-i18n="education.item2.title">FullStack Development</h3>
-                        <p class="education-institution" data-i18n="education.item2.institution">MasterD Castellón</p>
-                        <p class="education-description" data-i18n="education.item2.description">
-                            HTML, CSS, JS, PHP, APACHE, SQL, MYSQL, POSTGRESQL, PYTHON, EXPRESS JS, REACT, VUE, ANGULAR, 
-                            BOOTSTRAP, MATERIAL UI, WORDPRESS, NODEJS, MONGODB, JOOMLA
-                        </p>
-                    </div>
-                </div>
-                <div class="education-item">
-                    <div class="education-date" data-i18n="education.item3.date">Septiembre 2016 - Junio 2017</div>
-                    <div class="education-content">
-                        <h3 class="education-title" data-i18n="education.item3.title">Ingeniería Informática</h3>
-                        <p class="education-institution" data-i18n="education.item3.institution">UJI Castellón</p>
-                        <p class="education-description" data-i18n="education.item3.description">
-                            Ensamblador en C, Java y Python con POO, data structures y patterns.
-                        </p>
-                    </div>
-                </div>
-                <div class="education-item">
-                    <div class="education-date" data-i18n="education.item4.date">Septiembre 2015 – Mayo 2016</div>
-                    <div class="education-content">
-                        <h3 class="education-title" data-i18n="education.item4.title">Bachillerato Científico Sanitario</h3>
-                        <p class="education-institution" data-i18n="education.item4.institution">IES Benigaslo La Vall Uixó</p>
-                    </div>
-                </div>
+    <!-- DIVIDER -->
+    <div class="ide-divider"></div>
+
+    <!-- RIGHT: PREVIEW -->
+    <div class="ide-preview">
+      <div class="preview-topbar">
+        <div class="preview-url">localhost:3000</div>
+        <div class="preview-refresh" id="spinner">↻</div>
+      </div>
+      <div class="preview-canvas">
+
+        <!-- Component 0: Profile Card -->
+        <div class="preview-component visible" id="prev-0">
+          <div class="prev-card">
+            <div class="prev-card-avatar">OM</div>
+            <div class="prev-card-name">OUSAMA M.</div>
+            <div class="prev-card-role">FullStack Developer</div>
+            <div class="prev-card-tags">
+              <span class="prev-card-tag">React</span>
+              <span class="prev-card-tag">Node.js</span>
+              <span class="prev-card-tag">PostgreSQL</span>
+              <span class="prev-card-tag">Docker</span>
             </div>
+            <div class="prev-card-btn">Hire me →</div>
+          </div>
         </div>
-    </section>
 
-    <!-- Experience Section -->
-    <section id="experience" class="experience">
-        <div class="container">
-            <h2 class="section-title" data-i18n="experience.title">Experience</h2>
-            <div class="experience-timeline">
-                <div class="experience-item">
-                    <div class="experience-date">Abril 2025 - Septiembre 2025</div>
-                    <div class="experience-content">
-                        <h3 class="experience-title">Comercial IT, Product Manager y Técnico de montaje + RMA</h3>
-                        <p class="experience-company">SLIMBOOK - PATERNA, VALENCIA</p>
-                        <p class="experience-description">
-                            Gestión integral de operaciones comerciales y técnicas:
-                        </p>
-                        <ul class="experience-list">
-                            <li>Gestión de pedidos, stocks y clientes con Odoo</li>
-                            <li>Análisis y planificación de campañas</li>
-                            <li>Gestión de proveedores nacionales y marcas principales como Micron, MSI, Adata, ASUS, Gigabyte, etc.</li>
-                            <li>Montaje de ordenadores de sobremesa / NAS para Workstation y ensamblado de portátiles</li>
-                            <li>Instalación y puesta en marcha de S.O como W11, Ubuntu, Fedora, Manjaro, Debian, Linux Mint, Proxmox, TrueNAS, etc.</li>
-                            <li>Organización y captación de clientes en eventos como Meta World Madrid 2025 y OWN Valencia 2025</li>
-                            <li>Soporte remoto y atención al cliente en troubleshooting de averías, recambio, mantenimiento y puesta en marcha de equipos averiados</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="experience-item">
-                    <div class="experience-date">Octubre 2024 - Enero 2025</div>
-                    <div class="experience-content">
-                        <h3 class="experience-title">Comercial Telecomunicaciones</h3>
-                        <p class="experience-company">AMFYTECH S.L - LA VALL D'UIXO</p>
-                        <p class="experience-description">
-                            Gestión comercial y técnica en telecomunicaciones:
-                        </p>
-                        <ul class="experience-list">
-                            <li>Gestión de contabilidad, pedidos y creación de CRM</li>
-                            <li>Prospección de clientes a puerta fría, cold mailing, cold calling y LinkedIn</li>
-                            <li>Venta de equipos de infraestructura de red switches gestionables, racks, maquetación de esquemas de puntos de acceso y canalización de fibra óptica</li>
-                            <li>Venta de equipos de vigilancia y controles de acceso</li>
-                            <li>Redacción y preparación de anexos para licitaciones públicas</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="experience-item">
-                    <div class="experience-date">Junio 2024 - Agosto 2024</div>
-                    <div class="experience-content">
-                        <h3 class="experience-title">Mozo de Almacén</h3>
-                        <p class="experience-company">AMAZON VLC1 - ONDA, CASTELLÓN</p>
-                        <p class="experience-description">
-                            Gestión de stock, ubicación y preparación de pedidos.
-                        </p>
-                    </div>
-                </div>
-                <div class="experience-item">
-                    <div class="experience-date">Marzo 2023 - Marzo 2024</div>
-                    <div class="experience-content">
-                        <h3 class="experience-title">Gestión del canal de IBERIA (España, Portugal) y Sur de Francia</h3>
-                        <p class="experience-company">DeepCool Beijing CO LTD (Remoto)</p>
-                        <p class="experience-description">
-                            Gestión integral del canal IBERIA:
-                        </p>
-                        <ul class="experience-list">
-                            <li>Gestión de pedidos de contenedor, distribuidores como Globomatik y CompuSpain, cuentas B2B como Coolmod, PcComponentes, Wipoid, etc.</li>
-                            <li>Planificación de campañas, stocks, sellouts, MDF</li>
-                            <li>Análisis de rotaciones de productos, tasas de RMA y forecast de demanda</li>
-                            <li>Visitas mensuales a clientes realizando customer success y recogiendo todo el feedback posible para HQ</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="experience-item">
-                    <div class="experience-date">Diciembre 2022 – Febrero 2023</div>
-                    <div class="experience-content">
-                        <h3 class="experience-title">Técnico de RMA</h3>
-                        <p class="experience-company">COOLMOD INFORMÁTICA - ALMAZORA, CASTELLÓN</p>
-                        <p class="experience-description">
-                            Gestión técnica de garantías y soporte:
-                        </p>
-                        <ul class="experience-list">
-                            <li>Gestión de RMA, reembolsos y soporte remoto</li>
-                            <li>Diagnóstico y testeo de componentes</li>
-                            <li>Gestión de tramitaciones de proveedores tanto nacionales como internacionales</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="experience-item">
-                    <div class="experience-date">Enero 2022 - Diciembre 2022</div>
-                    <div class="experience-content">
-                        <h3 class="experience-title">Product Manager</h3>
-                        <p class="experience-company">COOLMOD INFORMÁTICA - ALMAZORA, CASTELLÓN</p>
-                        <p class="experience-description">
-                            Gestión de productos y familias de hardware:
-                        </p>
-                        <ul class="experience-list">
-                            <li>Gestión de productos y familias de torres, fuentes de alimentación, memorias RAM, procesadores, tarjetas gráficas, periféricos, etc.</li>
-                            <li>Gestión de stock, compras, rotaciones de producto</li>
-                            <li>Planificación de campañas de promoción, campañas de liquidación</li>
-                            <li>Acciones de Marketing con NVIDIA, AMD, Cooler Master para ensamblado de equipos para streamers como Illojuan, ElXokas, etc.</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="experience-item">
-                    <div class="experience-date">Junio 2020 – Enero 2022</div>
-                    <div class="experience-content">
-                        <h3 class="experience-title">Jefe de Taller en Ensamblado de Equipos</h3>
-                        <p class="experience-company">COOLMOD INFORMÁTICA - ALMAZORA, CASTELLÓN</p>
-                        <p class="experience-description">
-                            Liderazgo técnico en ensamblado:
-                        </p>
-                        <ul class="experience-list">
-                            <li>Gestión de cola de montaje, personal y reparto de carga de trabajo</li>
-                            <li>Resolución y gestión de pedidos para que se puedan montar los equipos sin incompatibilidades y cumpliendo con las exigencias del cliente</li>
-                            <li>Montaje, instalación y testeo de equipos de sobremesa y portátiles</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="experience-item">
-                    <div class="experience-date">Enero 2019 – Junio 2020</div>
-                    <div class="experience-content">
-                        <h3 class="experience-title">Técnico de Taller</h3>
-                        <p class="experience-company">COOLMOD INFORMÁTICA - ALMAZORA, CASTELLÓN</p>
-                        <p class="experience-description">
-                            Resolución y gestión de pedidos para que se puedan montar los equipos sin incompatibilidades y cumpliendo con las exigencias del cliente. Montaje, instalación y testeo de equipos de sobremesa y portátiles.
-                        </p>
-                    </div>
-                </div>
-                <div class="experience-item">
-                    <div class="experience-date">Junio 2018 – Octubre 2018</div>
-                    <div class="experience-content">
-                        <h3 class="experience-title">Prácticas Backend</h3>
-                        <p class="experience-company">JMI Bruxelles (Bélgica)</p>
-                        <p class="experience-description">
-                            Experiencia temprana en desarrollo backend:
-                        </p>
-                        <ul class="experience-list">
-                            <li>Mocking, wireframing y prototype de aplicación móvil</li>
-                            <li>Diseño y creación de base de datos con MySQL WorkBench</li>
-                            <li>Backend gestionado con yii2 PHP y composer</li>
-                        </ul>
-                    </div>
-                </div>
+        <!-- Component 1: Stats dashboard -->
+        <div class="preview-component" id="prev-1">
+          <div class="prev-dash">
+            <div class="prev-dash-title">— dev metrics</div>
+            <div class="prev-stat-row">
+              <div class="prev-stat">
+                <div class="prev-stat-val" id="stat-projects">0</div>
+                <div class="prev-stat-lbl">Projects</div>
+              </div>
+              <div class="prev-stat">
+                <div class="prev-stat-val" id="stat-langs">0</div>
+                <div class="prev-stat-lbl">Languages</div>
+              </div>
+              <div class="prev-stat">
+                <div class="prev-stat-val" id="stat-yrs">0</div>
+                <div class="prev-stat-lbl">Yrs exp</div>
+              </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Languages Section -->
-    <section id="languages" class="languages">
-        <div class="container">
-            <h2 class="section-title" data-i18n="languages.title">Languages</h2>
-            <div class="languages-grid">
-                <div class="language-item" data-level="C2">
-                    <span class="language-name">Español (Castellano)</span>
-                    <span class="language-level">Nativo (C2)</span>
-                </div>
-                <div class="language-item" data-level="C2">
-                    <span class="language-name">Francés</span>
-                    <span class="language-level">Nativo (C2)</span>
-                </div>
-                <div class="language-item" data-level="C1">
-                    <span class="language-name">Inglés</span>
-                    <span class="language-level">Alto (C1)</span>
-                </div>
-                <div class="language-item" data-level="A2">
-                    <span class="language-name">Árabe</span>
-                    <span class="language-level">Básico (A2)</span>
-                </div>
-                <div class="language-item" data-level="B2">
-                    <span class="language-name">Catalán</span>
-                    <span class="language-level">Intermedio (B2)</span>
-                </div>
-                <div class="language-item" data-level="B2">
-                    <span class="language-name">Valenciano</span>
-                    <span class="language-level">Intermedio (B2)</span>
-                </div>
+            <div class="prev-bar-wrap">
+              <div class="prev-bar-label"><span>Frontend</span><span>92%</span></div>
+              <div class="prev-bar-track"><div class="prev-bar-fill" id="bar-fe" style="width:0%"></div></div>
             </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title" data-i18n="contact.title">Get In Touch</h2>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <p class="contact-text" data-i18n="contact.text">
-                        I'm currently looking for opportunities as a junior full-stack developer. 
-                        Whether you have a project in mind, want to collaborate, or just want to 
-                        connect, I'd love to hear from you!
-                    </p>
-                    <div class="social-links">
-                        <a href="https://github.com/beerandbytes" target="_blank" rel="noopener noreferrer" class="social-link">
-                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/github.svg" alt="GitHub" class="social-icon">
-                            <span>GitHub</span>
-                        </a>
-                        <a href="https://linkedin.com/in/ousama-merrakchi" target="_blank" rel="noopener noreferrer" class="social-link">
-                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/linkedin.svg" alt="LinkedIn" class="social-icon">
-                            <span>LinkedIn</span>
-                        </a>
-                        <a href="mailto:your.email@example.com" class="social-link">
-                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/gmail.svg" alt="Email" class="social-icon">
-                            <span>Email</span>
-                        </a>
-                    </div>
-                </div>
-                <form class="contact-form" id="contactForm">
-                    <div class="form-group">
-                        <label for="name" data-i18n="contact.name">Name</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email" data-i18n="contact.email">Email</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message" data-i18n="contact.message">Message</label>
-                        <textarea id="message" name="message" rows="5" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary" data-i18n="contact.send">Send Message</button>
-                </form>
+            <div class="prev-bar-wrap" style="border-top:none">
+              <div class="prev-bar-label"><span>Backend</span><span>88%</span></div>
+              <div class="prev-bar-track"><div class="prev-bar-fill" id="bar-be" style="width:0%"></div></div>
             </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <p data-i18n="footer.copyright">&copy; 2024 Ousama Merrakchi. All rights reserved.</p>
-                <button class="back-to-top" id="backToTop" aria-label="Back to top">
-                    ↑
-                </button>
+            <div class="prev-bar-wrap" style="border-top:none">
+              <div class="prev-bar-label"><span>DevOps</span><span>74%</span></div>
+              <div class="prev-bar-track"><div class="prev-bar-fill" id="bar-do" style="width:0%"></div></div>
             </div>
+          </div>
         </div>
-    </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.topology.min.js"></script>
-    <script src="js/i18n.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/navigation.js"></script>
-    <script src="js/animations.js"></script>
-    <script>
-        VANTA.TOPOLOGY({
-            el: "#home",
-            mouseControls: true,
-            touchControls: true,
-            gyroControls: false,
-            minHeight: 200.00,
-            minWidth: 200.00,
-            scale: 1.00,
-            scaleMobile: 1.00,
-            color: 0xfa0303,
-            backgroundColor: 0x20202,
-            loop: true
-        })
-    </script>
+        <!-- Component 2: Contact form -->
+        <div class="preview-component" id="prev-2">
+          <div class="prev-form">
+            <div class="prev-form-title">GET IN<br>TOUCH.</div>
+            <div class="prev-field">
+              <label class="prev-label">Your name</label>
+              <input class="prev-input" type="text" placeholder="John Doe">
+            </div>
+            <div class="prev-field">
+              <label class="prev-label">Email</label>
+              <input class="prev-input" type="email" placeholder="john@company.com">
+            </div>
+            <div class="prev-field">
+              <label class="prev-label">Project</label>
+              <input class="prev-input" type="text" placeholder="SaaS / E-commerce / App...">
+            </div>
+            <button class="prev-submit">Send message →</button>
+          </div>
+        </div>
+
+        <!-- Component 3: API response -->
+        <div class="preview-component" id="prev-3">
+          <div class="prev-api">
+            <div class="prev-api-bar">
+              <span class="prev-api-method">GET</span>
+              <span class="prev-api-url">/api/developer/ousama</span>
+              <span class="prev-api-status">200 OK</span>
+            </div>
+            <div class="prev-api-body" id="apiBody">
+              <div><span class="api-key">"name"</span>: <span class="api-val api-typing" id="apiTyping"></span></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-taglines">
+    <span>FULLSTACK DEVELOPER</span>
+    <span>MULTILINGÜE · 5 IDIOMAS</span>
+    <span>DISPONIBLE PARA PROYECTOS</span>
+  </div>
+  <div class="hero-name">
+    <span>OUSAMA</span>
+    <span>MERRAKCHI</span>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-inner">
+    <span>REACT</span><span class="marquee-sep">·</span><span>NODE.JS</span><span class="marquee-sep">·</span><span>PHP</span><span class="marquee-sep">·</span><span>PYTHON</span><span class="marquee-sep">·</span><span>AWS</span><span class="marquee-sep">·</span><span>DOCKER</span><span class="marquee-sep">·</span><span>POSTGRESQL</span><span class="marquee-sep">·</span><span>NEXT.JS</span><span class="marquee-sep">·</span><span>ANGULAR</span><span class="marquee-sep">·</span><span>VUE</span><span class="marquee-sep">·</span><span>C#</span><span class="marquee-sep">·</span><span>MONGODB</span><span class="marquee-sep">·</span><span>LINUX</span><span class="marquee-sep">·</span><span>AZURE</span><span class="marquee-sep">·</span><span>GCP</span><span class="marquee-sep">·</span><span>MYSQL</span><span class="marquee-sep">·</span>
+    <span>REACT</span><span class="marquee-sep">·</span><span>NODE.JS</span><span class="marquee-sep">·</span><span>PHP</span><span class="marquee-sep">·</span><span>PYTHON</span><span class="marquee-sep">·</span><span>AWS</span><span class="marquee-sep">·</span><span>DOCKER</span><span class="marquee-sep">·</span><span>POSTGRESQL</span><span class="marquee-sep">·</span><span>NEXT.JS</span><span class="marquee-sep">·</span><span>ANGULAR</span><span class="marquee-sep">·</span><span>VUE</span><span class="marquee-sep">·</span><span>C#</span><span class="marquee-sep">·</span><span>MONGODB</span><span class="marquee-sep">·</span><span>LINUX</span><span class="marquee-sep">·</span><span>AZURE</span><span class="marquee-sep">·</span><span>GCP</span><span class="marquee-sep">·</span><span>MYSQL</span><span class="marquee-sep">·</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="ghost-num">01</div>
+  <div class="section-label">sobre mí</div>
+  <div class="about-grid">
+    <div class="reveal">
+      <div class="about-title">DEVELOPER.<br>BUILDER.<br>PROBLEM<br>SOLVER.</div>
+    </div>
+    <div class="reveal reveal-d1">
+      <div class="about-body">
+        <p>Soy Ousama, desarrollador FullStack Junior con una trayectoria poco convencional que suma más de 6 años en administración de sistemas y hardware, 3 años en roles comerciales internacionales, y formación full-stack completada en 2025.</p>
+        <p>Tengo experiencia real lanzando proyectos desde cero: desde sistemas de gestión de facturas con Deno, hasta aplicaciones de escritorio en C# con Avalonia, pasando por plataformas web con MERN o LAMP.</p>
+        <p>Mi historial en empresas como SLIMBOOK o DeepCool me da una visión más allá del código: entiendo los procesos, los clientes, y la importancia de entregar productos que funcionen de verdad.</p>
+      </div>
+      <div class="about-meta">
+        <div class="meta-row"><span class="meta-key">Ubicación</span><span>La Vall D'Uixó, Castellón</span></div>
+        <div class="meta-row"><span class="meta-key">Edad</span><span>31 años</span></div>
+        <div class="meta-row"><span class="meta-key">Permiso UE</span><span>Larga duración ✓</span></div>
+        <div class="meta-row"><span class="meta-key">Teléfono</span><span>+34 602 32 61 50</span></div>
+        <div class="meta-row"><span class="meta-key">Idiomas</span><span>ES · FR · EN · CA · AR</span></div>
+        <div class="meta-row"><span class="meta-key">Estado</span><span>Abierto a oportunidades</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="section" id="skills">
+  <div class="ghost-num">02</div>
+  <div class="section-label">habilidades</div>
+  <div class="skills-grid reveal">
+    <div class="skill-cat"><h3>Frontend</h3><div class="skill-tags"><span class="tag">React</span><span class="tag">Next.js</span><span class="tag">Angular</span><span class="tag">Vue</span><span class="tag">HTML / CSS</span><span class="tag">Bootstrap</span><span class="tag">Material UI</span><span class="tag">Tailwind</span><span class="tag">Deno Fresh</span></div></div>
+    <div class="skill-cat"><h3>Backend</h3><div class="skill-tags"><span class="tag">Node.js</span><span class="tag">Express.js</span><span class="tag">PHP</span><span class="tag">Python</span><span class="tag">C#</span><span class="tag">Deno</span><span class="tag">yii2</span><span class="tag">WordPress</span><span class="tag">Joomla</span></div></div>
+    <div class="skill-cat"><h3>Bases de datos</h3><div class="skill-tags"><span class="tag">PostgreSQL</span><span class="tag">MySQL</span><span class="tag">MongoDB</span><span class="tag">SQLite</span><span class="tag">Deno KV</span></div></div>
+    <div class="skill-cat"><h3>Cloud & DevOps</h3><div class="skill-tags"><span class="tag">AWS</span><span class="tag">Azure</span><span class="tag">GCP</span><span class="tag">Docker</span><span class="tag">Render</span><span class="tag">Railway</span><span class="tag">Linux</span><span class="tag">Bash</span><span class="tag">PowerShell</span></div></div>
+    <div class="skill-cat"><h3>Sistemas & HW</h3><div class="skill-tags"><span class="tag">Windows 11</span><span class="tag">Ubuntu</span><span class="tag">Debian</span><span class="tag">Arch</span><span class="tag">TrueNAS</span><span class="tag">Proxmox</span><span class="tag">Montaje PC</span><span class="tag">NAS / WS</span></div></div>
+    <div class="skill-cat"><h3>Otras</h3><div class="skill-tags"><span class="tag">Odoo</span><span class="tag">Git</span><span class="tag">Avalonia UI</span><span class="tag">Figma</span><span class="tag">MySQL WB</span></div></div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="section" id="projects">
+  <div class="ghost-num">03</div>
+  <div class="section-label">proyectos</div>
+  <div class="projects-list">
+    <div class="project-item reveal"><div class="proj-num">01</div><div class="proj-name"><a href="https://github.com/beerandbytes/facturas" target="_blank" rel="noopener noreferrer">Sistema de Gestión de Facturas</a></div><div class="proj-stack">Deno Fresh · Deno KV · Tailwind</div></div>
+    <div class="project-item reveal reveal-d1"><div class="proj-num">02</div><div class="proj-name">Gestión de Clientes Desktop</div><div class="proj-stack">C# · Avalonia UI · SQLite</div></div>
+    <div class="project-item reveal reveal-d2"><div class="proj-num">03</div><div class="proj-name">Sistema de Gestión de Gimnasio</div><div class="proj-stack">React · Node.js · PostgreSQL</div></div>
+    <div class="project-item reveal reveal-d3"><div class="proj-num">04</div><div class="proj-name">Reservas para Taller Mecánico</div><div class="proj-stack">PHP · Bootstrap · MySQL</div></div>
+    <div class="project-item reveal"><div class="proj-num">05</div><div class="proj-name">Portfolio para Diseñador 3D</div><div class="proj-stack">React · Vite.js</div></div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="section" id="experience">
+  <div class="ghost-num">04</div>
+  <div class="section-label">experiencia</div>
+  <div class="exp-list">
+    <div class="exp-item reveal">
+      <div class="exp-date">Abr 2025 –<br>Sep 2025</div>
+      <div><div class="exp-company">SLIMBOOK</div><div class="exp-role">Comercial IT · Product Manager · Técnico RMA — Paterna, Valencia</div><div class="exp-desc"><ul><li>Gestión de pedidos, stocks y clientes con Odoo.</li><li>Montaje de ordenadores y portátiles con instalación de W11, Ubuntu, Fedora, Proxmox, TrueNAS.</li><li>Captación de clientes: Meta World Madrid 2025 y OWN Valencia 2025.</li><li>Soporte remoto y troubleshooting.</li></ul></div></div>
+    </div>
+    <div class="exp-item reveal">
+      <div class="exp-date">Oct 2024 –<br>Ene 2025</div>
+      <div><div class="exp-company">AMFYTECH S.L.</div><div class="exp-role">Comercial Telecomunicaciones — La Vall D'Uixó</div><div class="exp-desc"><ul><li>Prospección B2B: cold calling, cold mailing, LinkedIn.</li><li>Venta de infraestructura de red: switches, racks, fibra óptica.</li><li>Redacción de anexos para licitaciones públicas.</li></ul></div></div>
+    </div>
+    <div class="exp-item reveal">
+      <div class="exp-date">Mar 2023 –<br>Mar 2024</div>
+      <div><div class="exp-company">DEEPCOOL BEIJING CO. LTD</div><div class="exp-role">Country Manager Iberia & Sur de Francia — Remoto</div><div class="exp-desc"><ul><li>Gestión del canal de Iberia: Globomatik, CompuSpain, PcComponentes, Coolmod, Wipoid.</li><li>Planificación de campañas, stocks, sellouts y MDF.</li><li>Visitas mensuales a clientes y reporte a HQ Beijing.</li></ul></div></div>
+    </div>
+    <div class="exp-item reveal">
+      <div class="exp-date">Ene 2018 –<br>Feb 2023</div>
+      <div><div class="exp-company">COOLMOD INFORMÁTICA</div><div class="exp-role">Técnico RMA / Product Manager / Jefe de Taller — Almazora</div><div class="exp-desc"><ul><li><strong>Product Manager (2022):</strong> campañas con NVIDIA, AMD y Cooler Master para streamers.</li><li><strong>Jefe de Taller (2020–2022):</strong> gestión de cola de montaje.</li><li><strong>Técnico (2019–2020):</strong> montaje, instalación y testeo de equipos.</li></ul></div></div>
+    </div>
+    <div class="exp-item reveal">
+      <div class="exp-date">Jun 2018 –<br>Oct 2018</div>
+      <div><div class="exp-company">JMI BRUXELLES</div><div class="exp-role">Prácticas Backend — Bruselas, Bélgica</div><div class="exp-desc"><ul><li>Mocking, wireframing y prototipado de app móvil.</li><li>Diseño de base de datos en MySQL Workbench.</li><li>Backend con yii2 PHP y Composer.</li></ul></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- LANGUAGES -->
+<section class="section" style="padding-bottom:0">
+  <div class="section-label">idiomas</div>
+  <div class="lang-wrap reveal">
+    <div class="lang-item"><div class="lang-name">Español</div><div class="lang-level">Nativo · C2</div><div class="lang-bar"><div class="lang-fill" style="width:100%"></div></div></div>
+    <div class="lang-item"><div class="lang-name">Francés</div><div class="lang-level">Nativo · C2</div><div class="lang-bar"><div class="lang-fill" style="width:100%"></div></div></div>
+    <div class="lang-item"><div class="lang-name">Inglés</div><div class="lang-level">Alto · C1</div><div class="lang-bar"><div class="lang-fill" style="width:87%"></div></div></div>
+    <div class="lang-item"><div class="lang-name">Catalán</div><div class="lang-level">Intermedio · B2</div><div class="lang-bar"><div class="lang-fill" style="width:68%"></div></div></div>
+    <div class="lang-item"><div class="lang-name">Valenciano</div><div class="lang-level">Intermedio · B2</div><div class="lang-bar"><div class="lang-fill" style="width:68%"></div></div></div>
+    <div class="lang-item"><div class="lang-name">Árabe</div><div class="lang-level">Básico · A2</div><div class="lang-bar"><div class="lang-fill" style="width:22%"></div></div></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+  <div class="ghost-num">05</div>
+  <div class="section-label">contacto</div>
+  <div class="contact-grid">
+    <div class="reveal">
+      <div class="contact-title">HABLEMOS<br>DE TU<br>PROYECTO.</div>
+      <div class="contact-email">ousama.merrakchi<br>@gmail.com</div>
+    </div>
+    <div class="contact-links reveal reveal-d1">
+      <a class="c-link" href="https://github.com/beerandbytes" target="_blank">GitHub — beerandbytes <span>↗</span></a>
+      <a class="c-link" href="https://www.linkedin.com/in/ousama-merrakchi/" target="_blank">LinkedIn — ousama-merrakchi <span>↗</span></a>
+      <a class="c-link" href="https://beerandbytes.github.io/portfolio_2026/" target="_blank">Portfolio Online <span>↗</span></a>
+      <a class="c-link" href="tel:+34602326150">+34 602 32 61 50 <span>→</span></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="left">2026 Ousama Merrakchi </div>
+  <div class="right">La Vall D'Uixó, Castellón</div>
+</footer>
+
+<script>
+// ── CURSOR ──────────────────────────────────────────────────────────────────
+const cursor = document.getElementById('cursor');
+document.addEventListener('mousemove', e => {
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top  = e.clientY + 'px';
+});
+document.querySelectorAll('a,.project-item,.tag,.c-link,.ide-tab,.prev-card-btn,.prev-submit,.prev-input').forEach(el => {
+  el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+  el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+});
+
+// ── CODE SNIPPETS ───────────────────────────────────────────────────────────
+// Each snippet is an array of {text, delay} — text uses HTML spans for colour
+const snippets = [
+  // 0: Profile Card
+  [
+    {t:`<span class="t-kw">import</span> <span class="t-fn">React</span> <span class="t-kw">from</span> <span class="t-str">'react'</span>`, d:0},
+    {t:``, d:0},
+    {t:`<span class="t-kw">const</span> <span class="t-fn">ProfileCard</span> = () => {`, d:30},
+    {t:`  <span class="t-kw">const</span> dev = {`, d:30},
+    {t:`    name: <span class="t-str">"Ousama Merrakchi"</span>,`, d:30},
+    {t:`    role: <span class="t-str">"FullStack Developer"</span>,`, d:30},
+    {t:`    stack: [<span class="t-str">"React"</span>, <span class="t-str">"Node"</span>,`, d:30},
+    {t:`            <span class="t-str">"PostgreSQL"</span>, <span class="t-str">"Docker"</span>],`, d:30},
+    {t:`    open: <span class="t-num">true</span>`, d:30},
+    {t:`  }`, d:30},
+    {t:``, d:0},
+    {t:`  <span class="t-kw">return</span> (`, d:30},
+    {t:`    <span class="t-tag">&lt;Card&gt;</span>`, d:30},
+    {t:`      <span class="t-tag">&lt;Avatar</span> <span class="t-attr">initials</span>=<span class="t-val">"OM"</span> <span class="t-tag">/&gt;</span>`, d:30},
+    {t:`      <span class="t-tag">&lt;Name&gt;</span>{dev.name}<span class="t-tag">&lt;/Name&gt;</span>`, d:30},
+    {t:`      <span class="t-tag">&lt;Role&gt;</span>{dev.role}<span class="t-tag">&lt;/Role&gt;</span>`, d:30},
+    {t:`      <span class="t-tag">&lt;Tags</span> <span class="t-attr">items</span>={dev.stack} <span class="t-tag">/&gt;</span>`, d:30},
+    {t:`      <span class="t-tag">&lt;Button&gt;</span>Hire me →<span class="t-tag">&lt;/Button&gt;</span>`, d:30},
+    {t:`    <span class="t-tag">&lt;/Card&gt;</span>`, d:30},
+    {t:`  )`, d:30},
+    {t:`}`, d:30},
+    {t:``, d:0},
+    {t:`<span class="t-kw">export default</span> <span class="t-fn">ProfileCard</span>`, d:30},
+  ],
+  // 1: Dashboard
+  [
+    {t:`<span class="t-kw">import</span> { <span class="t-fn">useState</span>, <span class="t-fn">useEffect</span> }`, d:0},
+    {t:`  <span class="t-kw">from</span> <span class="t-str">'react'</span>`, d:0},
+    {t:``, d:0},
+    {t:`<span class="t-kw">const</span> <span class="t-fn">Dashboard</span> = () => {`, d:30},
+    {t:`  <span class="t-kw">const</span> [stats, setStats] =`, d:30},
+    {t:`    <span class="t-fn">useState</span>({`, d:30},
+    {t:`      projects: <span class="t-num">0</span>,`, d:30},
+    {t:`      languages: <span class="t-num">0</span>,`, d:30},
+    {t:`      years: <span class="t-num">0</span>`, d:30},
+    {t:`    })`, d:30},
+    {t:``, d:0},
+    {t:`  <span class="t-fn">useEffect</span>(() => {`, d:30},
+    {t:`    <span class="t-cmt">// animate counters on mount</span>`, d:30},
+    {t:`    <span class="t-fn">animateCount</span>(<span class="t-str">'projects'</span>, <span class="t-num">12</span>)`, d:30},
+    {t:`    <span class="t-fn">animateCount</span>(<span class="t-str">'languages'</span>, <span class="t-num">5</span>)`, d:30},
+    {t:`    <span class="t-fn">animateCount</span>(<span class="t-str">'years'</span>, <span class="t-num">7</span>)`, d:30},
+    {t:`  }, [])`, d:30},
+    {t:``, d:0},
+    {t:`  <span class="t-kw">return</span> <span class="t-tag">&lt;Metrics</span>`, d:30},
+    {t:`    <span class="t-attr">data</span>={stats}`, d:30},
+    {t:`    <span class="t-attr">bars</span>={[<span class="t-num">92</span>, <span class="t-num">88</span>, <span class="t-num">74</span>]}`, d:30},
+    {t:`  <span class="t-tag">/&gt;</span>`, d:30},
+    {t:`}`, d:30},
+  ],
+  // 2: Form
+  [
+    {t:`<span class="t-kw">import</span> { <span class="t-fn">useForm</span> } <span class="t-kw">from</span>`, d:0},
+    {t:`  <span class="t-str">'react-hook-form'</span>`, d:0},
+    {t:``, d:0},
+    {t:`<span class="t-kw">const</span> <span class="t-fn">ContactForm</span> = () => {`, d:30},
+    {t:`  <span class="t-kw">const</span> { register,`, d:30},
+    {t:`    handleSubmit, errors }`, d:30},
+    {t:`    = <span class="t-fn">useForm</span>()`, d:30},
+    {t:``, d:0},
+    {t:`  <span class="t-kw">const</span> <span class="t-fn">onSubmit</span> = async (data) => {`, d:30},
+    {t:`    <span class="t-kw">await</span> <span class="t-fn">fetch</span>(<span class="t-str">'/api/contact'</span>, {`, d:30},
+    {t:`      method: <span class="t-str">'POST'</span>,`, d:30},
+    {t:`      body: <span class="t-fn">JSON.stringify</span>(data)`, d:30},
+    {t:`    })`, d:30},
+    {t:`  }`, d:30},
+    {t:``, d:0},
+    {t:`  <span class="t-kw">return</span> (`, d:30},
+    {t:`    <span class="t-tag">&lt;form</span> <span class="t-attr">onSubmit</span>={handleSubmit(`, d:30},
+    {t:`      onSubmit)}&gt;`, d:30},
+    {t:`      <span class="t-tag">&lt;Input</span> <span class="t-attr">name</span>=<span class="t-val">"name"</span> <span class="t-tag">/&gt;</span>`, d:30},
+    {t:`      <span class="t-tag">&lt;Input</span> <span class="t-attr">name</span>=<span class="t-val">"email"</span> <span class="t-tag">/&gt;</span>`, d:30},
+    {t:`      <span class="t-tag">&lt;Button</span> <span class="t-attr">type</span>=<span class="t-val">"submit"</span><span class="t-tag">&gt;</span>`, d:30},
+    {t:`        Send →`, d:30},
+    {t:`      <span class="t-tag">&lt;/Button&gt;</span>`, d:30},
+    {t:`    <span class="t-tag">&lt;/form&gt;</span>`, d:30},
+    {t:`  )`, d:30},
+    {t:`}`, d:30},
+  ],
+  // 3: API
+  [
+    {t:`<span class="t-cmt">// Express.js REST endpoint</span>`, d:0},
+    {t:``, d:0},
+    {t:`<span class="t-kw">const</span> express = <span class="t-fn">require</span>(<span class="t-str">'express'</span>)`, d:30},
+    {t:`<span class="t-kw">const</span> router = express.<span class="t-fn">Router</span>()`, d:30},
+    {t:``, d:0},
+    {t:`router.<span class="t-fn">get</span>(`, d:30},
+    {t:`  <span class="t-str">'/developer/:id'</span>,`, d:30},
+    {t:`  <span class="t-fn">auth</span>,`, d:30},
+    {t:`  async (req, res) => {`, d:30},
+    {t:`    <span class="t-kw">try</span> {`, d:30},
+    {t:`      <span class="t-kw">const</span> dev = <span class="t-kw">await</span>`, d:30},
+    {t:`        <span class="t-fn">Developer</span>.<span class="t-fn">findById</span>(`, d:30},
+    {t:`          req.params.id`, d:30},
+    {t:`        )`, d:30},
+    {t:`      res.<span class="t-fn">json</span>({`, d:30},
+    {t:`        name: dev.name,`, d:30},
+    {t:`        role: dev.role,`, d:30},
+    {t:`        stack: dev.stack,`, d:30},
+    {t:`        available: <span class="t-num">true</span>`, d:30},
+    {t:`      })`, d:30},
+    {t:`    } <span class="t-kw">catch</span> (err) {`, d:30},
+    {t:`      res.<span class="t-fn">status</span>(<span class="t-num">500</span>)`, d:30},
+    {t:`         .<span class="t-fn">json</span>({ error: err })`, d:30},
+    {t:`    }`, d:30},
+    {t:`  }`, d:30},
+    {t:`)`, d:30},
+  ],
+];
+
+// ── STATE ───────────────────────────────────────────────────────────────────
+let currentTab = 0;
+let typeTimer = null;
+
+// ── TYPE CODE ───────────────────────────────────────────────────────────────
+function typeCode(tabIndex) {
+  clearTimeout(typeTimer);
+  const lines = document.getElementById('codeLines');
+  lines.innerHTML = '';
+
+  const snippet = snippets[tabIndex];
+  let i = 0;
+
+  // show spinner
+  const spinner = document.getElementById('spinner');
+  spinner.classList.add('active');
+  setTimeout(() => spinner.classList.remove('active'), 600);
+
+  function addLine() {
+    if (i >= snippet.length) {
+      // remove blinking cursor from last line
+      const last = lines.querySelector('.cursor-blink');
+      if (last) last.remove();
+      return;
+    }
+
+    // remove previous cursor
+    const prev = lines.querySelector('.cursor-blink');
+    if (prev) prev.remove();
+
+    const item = snippet[i];
+    const row = document.createElement('div');
+    row.className = 'code-line';
+
+    const num = document.createElement('div');
+    num.className = 'line-num';
+    num.textContent = i + 1;
+
+    const code = document.createElement('div');
+    code.className = 'line-code';
+    code.innerHTML = item.t + (i < snippet.length - 1 ? '' : '') + '<span class="cursor-blink"></span>';
+
+    row.appendChild(num);
+    row.appendChild(code);
+    lines.appendChild(row);
+
+    // auto scroll
+    lines.parentElement.scrollTop = lines.parentElement.scrollHeight;
+
+    i++;
+    const delay = item.d === 0 ? 0 : item.d + Math.random() * 40;
+    typeTimer = setTimeout(addLine, delay);
+  }
+
+  addLine();
+}
+
+// ── SWITCH TABS ─────────────────────────────────────────────────────────────
+function switchTab(index) {
+  if (index === currentTab) return;
+  currentTab = index;
+
+  // tabs
+  document.querySelectorAll('.ide-tab').forEach((t, i) => {
+    t.classList.toggle('active', i === index);
+  });
+
+  // hide all preview components
+  document.querySelectorAll('.preview-component').forEach(c => c.classList.remove('visible'));
+
+  // show target after tiny delay
+  setTimeout(() => {
+    const target = document.getElementById('prev-' + index);
+    if (target) target.classList.add('visible');
+
+    // trigger side effects per tab
+    if (index === 1) animateDashboard();
+    if (index === 3) animateAPI();
+  }, 200);
+
+  // retype code
+  typeCode(index);
+}
+
+document.querySelectorAll('.ide-tab').forEach(tab => {
+  tab.addEventListener('click', () => switchTab(parseInt(tab.dataset.tab)));
+});
+
+// ── DASHBOARD ANIMATION ─────────────────────────────────────────────────────
+function animateDashboard() {
+  animateCounter('stat-projects', 12, 1200);
+  animateCounter('stat-langs',    5,  900);
+  animateCounter('stat-yrs',      7,  1000);
+  setTimeout(() => {
+    const fe = document.getElementById('bar-fe');
+    const be = document.getElementById('bar-be');
+    const doo = document.getElementById('bar-do');
+    if (fe) fe.style.width = '92%';
+    if (be) be.style.width = '88%';
+    if (doo) doo.style.width = '74%';
+  }, 300);
+}
+
+function animateCounter(id, target, duration) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const start = performance.now();
+  function step(now) {
+    const p = Math.min((now - start) / duration, 1);
+    const ease = 1 - Math.pow(1 - p, 3);
+    el.textContent = Math.round(ease * target);
+    if (p < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+// ── API ANIMATION ────────────────────────────────────────────────────────────
+function animateAPI() {
+  const body = document.getElementById('apiBody');
+  const apiData = [
+    {key: '"name"',      val: '"Ousama Merrakchi"'},
+    {key: '"role"',      val: '"FullStack Developer"'},
+    {key: '"location"',  val: '"Castellón, Spain"'},
+    {key: '"available"', val: 'true'},
+    {key: '"stack"',     val: '["React","Node","PHP","Docker"]'},
+    {key: '"languages"', val: '["ES","FR","EN","CA","AR"]'},
+    {key: '"experience"',val: '"7+ years"'},
+  ];
+
+  body.innerHTML = '{\n';
+  let i = 0;
+
+  function addField() {
+    if (i >= apiData.length) {
+      body.innerHTML += '}';
+      return;
+    }
+    const d = apiData[i];
+    const comma = i < apiData.length - 1 ? ',' : '';
+    const line = document.createElement('div');
+    line.style.paddingLeft = '12px';
+    line.innerHTML = `<span class="api-key">${d.key}</span>: <span class="api-val"></span>${comma}`;
+    body.appendChild(line);
+
+    // type the value
+    const valEl = line.querySelector('.api-val');
+    let vi = 0;
+    const v = d.val;
+    function typeVal() {
+      if (vi <= v.length) {
+        valEl.textContent = v.slice(0, vi);
+        vi++;
+        setTimeout(typeVal, 18 + Math.random() * 20);
+      } else {
+        i++;
+        setTimeout(addField, 80);
+      }
+    }
+    typeVal();
+  }
+
+  setTimeout(addField, 400);
+}
+
+// ── INIT ─────────────────────────────────────────────────────────────────────
+typeCode(0);
+
+// auto-cycle tabs every 7s if user hasn't interacted
+let userInteracted = false;
+document.querySelectorAll('.ide-tab').forEach(t => {
+  t.addEventListener('click', () => { userInteracted = true; });
+});
+
+let autoCycleIndex = 0;
+setInterval(() => {
+  if (userInteracted) return;
+  autoCycleIndex = (autoCycleIndex + 1) % snippets.length;
+  switchTab(autoCycleIndex);
+}, 7000);
+
+// ── SCROLL REVEAL ────────────────────────────────────────────────────────────
+const reveals = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
+  });
+}, { threshold: 0.12 });
+reveals.forEach(r => obs.observe(r));
+
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) t.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+</script>
 </body>
 </html>
