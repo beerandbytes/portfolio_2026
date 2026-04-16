@@ -23,7 +23,26 @@
     .nav-links a{font-size:12px;letter-spacing:.06em;text-decoration:none;color:var(--ink);position:relative;}
     .nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1.5px;background:var(--ink);transition:width .3s ease;}
     .nav-links a:hover::after{width:100%;}
+    .nav-right{display:flex;align-items:center;gap:14px;}
     .nav-loc{font-size:12px;letter-spacing:.06em;opacity:.5;}
+    .lang-switch{display:flex;align-items:center;border:1.5px solid var(--ink);}
+    .lang-pill{
+      font-family:'DM Mono',monospace;
+      font-size:10px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      border:none;
+      border-right:1.5px solid var(--ink);
+      background:transparent;
+      color:var(--ink);
+      padding:7px 10px;
+      cursor:none;
+      transition:background .2s,color .2s,opacity .2s;
+      opacity:.6;
+    }
+    .lang-pill:last-child{border-right:none;}
+    .lang-pill.active{background:var(--ink);color:var(--bg);opacity:1;}
+    .lang-pill:hover{opacity:1;}
 
     /* ── HERO ── */
     .hero{min-height:100vh;padding-top:64px;display:flex;flex-direction:column;}
@@ -369,6 +388,9 @@
       .ide-divider::before{transform:translate(-50%,-50%) rotate(0deg);}
       nav{padding:16px 20px;}
       .nav-links{display:none;}
+      .nav-right{gap:8px;}
+      .nav-loc{display:none;}
+      .lang-pill{padding:6px 8px;font-size:9px;}
       .hero-name{font-size:clamp(52px,18vw,160px);}
       .hero-taglines{padding:14px 20px;flex-direction:column;gap:4px;}
       .about-grid,.contact-grid{grid-template-columns:1fr;}
@@ -384,13 +406,20 @@
 <nav>
   <div class="nav-logo">OM™</div>
   <ul class="nav-links">
-    <li><a href="#about">sobre mí</a></li>
-    <li><a href="#skills">skills</a></li>
-    <li><a href="#projects">proyectos</a></li>
-    <li><a href="#experience">experiencia</a></li>
-    <li><a href="#contact">contacto</a></li>
+    <li><a href="#about" data-i18n="nav.about">sobre mí</a></li>
+    <li><a href="#skills" data-i18n="nav.skills">habilidades</a></li>
+    <li><a href="#projects" data-i18n="nav.projects">proyectos</a></li>
+    <li><a href="#experience" data-i18n="nav.experience">experiencia</a></li>
+    <li><a href="#contact" data-i18n="nav.contact">contacto</a></li>
   </ul>
-  <div class="nav-loc">La Vall D'Uixó · Castellón</div>
+  <div class="nav-right">
+    <div class="nav-loc" data-i18n="nav.location">La Vall D'Uixó · Castellón</div>
+    <div class="lang-switch" aria-label="Language selector">
+      <button class="lang-pill active" type="button" data-lang="es">ES</button>
+      <button class="lang-pill" type="button" data-lang="en">EN</button>
+      <button class="lang-pill" type="button" data-lang="fr">FR</button>
+    </div>
+  </div>
 </nav>
 
 <section class="hero">
@@ -431,45 +460,45 @@
           <div class="prev-card">
             <div class="prev-card-avatar">OM</div>
             <div class="prev-card-name">OUSAMA M.</div>
-            <div class="prev-card-role">FullStack Developer</div>
+            <div class="prev-card-role" data-i18n="preview.cardRole">Full-Stack Developer</div>
             <div class="prev-card-tags">
               <span class="prev-card-tag">React</span>
               <span class="prev-card-tag">Node.js</span>
               <span class="prev-card-tag">PostgreSQL</span>
               <span class="prev-card-tag">Docker</span>
             </div>
-            <div class="prev-card-btn">Hire me →</div>
+            <div class="prev-card-btn" data-i18n="preview.cardBtn">Hire me →</div>
           </div>
         </div>
 
         <!-- Component 1: Stats dashboard -->
         <div class="preview-component" id="prev-1">
           <div class="prev-dash">
-            <div class="prev-dash-title">— dev metrics</div>
+            <div class="prev-dash-title" data-i18n="preview.metricsTitle">— dev metrics</div>
             <div class="prev-stat-row">
               <div class="prev-stat">
                 <div class="prev-stat-val" id="stat-projects">0</div>
-                <div class="prev-stat-lbl">Projects</div>
+                <div class="prev-stat-lbl" data-i18n="preview.statProjects">Projects</div>
               </div>
               <div class="prev-stat">
                 <div class="prev-stat-val" id="stat-langs">0</div>
-                <div class="prev-stat-lbl">Languages</div>
+                <div class="prev-stat-lbl" data-i18n="preview.statLanguages">Languages</div>
               </div>
               <div class="prev-stat">
                 <div class="prev-stat-val" id="stat-yrs">0</div>
-                <div class="prev-stat-lbl">Yrs exp</div>
+                <div class="prev-stat-lbl" data-i18n="preview.statYears">Yrs exp</div>
               </div>
             </div>
             <div class="prev-bar-wrap">
-              <div class="prev-bar-label"><span>Frontend</span><span>92%</span></div>
+              <div class="prev-bar-label"><span data-i18n="preview.barFrontend">Frontend</span><span>92%</span></div>
               <div class="prev-bar-track"><div class="prev-bar-fill" id="bar-fe" style="width:0%"></div></div>
             </div>
             <div class="prev-bar-wrap" style="border-top:none">
-              <div class="prev-bar-label"><span>Backend</span><span>88%</span></div>
+              <div class="prev-bar-label"><span data-i18n="preview.barBackend">Backend</span><span>88%</span></div>
               <div class="prev-bar-track"><div class="prev-bar-fill" id="bar-be" style="width:0%"></div></div>
             </div>
             <div class="prev-bar-wrap" style="border-top:none">
-              <div class="prev-bar-label"><span>DevOps</span><span>74%</span></div>
+              <div class="prev-bar-label"><span data-i18n="preview.barDevops">DevOps</span><span>74%</span></div>
               <div class="prev-bar-track"><div class="prev-bar-fill" id="bar-do" style="width:0%"></div></div>
             </div>
           </div>
@@ -478,20 +507,20 @@
         <!-- Component 2: Contact form -->
         <div class="preview-component" id="prev-2">
           <div class="prev-form">
-            <div class="prev-form-title">GET IN<br>TOUCH.</div>
+            <div class="prev-form-title" id="previewFormTitle">GET IN<br>TOUCH.</div>
             <div class="prev-field">
-              <label class="prev-label">Your name</label>
-              <input class="prev-input" type="text" placeholder="John Doe">
+              <label class="prev-label" data-i18n="preview.formNameLabel">Your name</label>
+              <input class="prev-input" id="previewNameInput" type="text" placeholder="John Doe">
             </div>
             <div class="prev-field">
-              <label class="prev-label">Email</label>
-              <input class="prev-input" type="email" placeholder="john@company.com">
+              <label class="prev-label" data-i18n="preview.formEmailLabel">Email</label>
+              <input class="prev-input" id="previewEmailInput" type="email" placeholder="john@company.com">
             </div>
             <div class="prev-field">
-              <label class="prev-label">Project</label>
-              <input class="prev-input" type="text" placeholder="SaaS / E-commerce / App...">
+              <label class="prev-label" data-i18n="preview.formProjectLabel">Project</label>
+              <input class="prev-input" id="previewProjectInput" type="text" placeholder="SaaS / E-commerce / App...">
             </div>
-            <button class="prev-submit">Send message →</button>
+            <button class="prev-submit" data-i18n="preview.formSubmit">Send message →</button>
           </div>
         </div>
 
@@ -514,9 +543,9 @@
   </div>
 
   <div class="hero-taglines">
-    <span>FULLSTACK DEVELOPER</span>
-    <span>MULTILINGÜE · 5 IDIOMAS</span>
-    <span>DISPONIBLE PARA PROYECTOS</span>
+    <span data-i18n="hero.tagline1">FULL-STACK DEVELOPER</span>
+    <span data-i18n="hero.tagline2">MULTILINGUAL · 5 LANGUAGES</span>
+    <span data-i18n="hero.tagline3">AVAILABLE FOR PROJECTS</span>
   </div>
   <div class="hero-name">
     <span>OUSAMA</span>
@@ -535,24 +564,24 @@
 <!-- ABOUT -->
 <section class="section" id="about">
   <div class="ghost-num">01</div>
-  <div class="section-label">sobre mí</div>
+  <div class="section-label" data-i18n="sections.about">sobre mí</div>
   <div class="about-grid">
     <div class="reveal">
-      <div class="about-title">DEVELOPER.<br>BUILDER.<br>PROBLEM<br>SOLVER.</div>
+      <div class="about-title" id="aboutTitle">DEVELOPER.<br>BUILDER.<br>PROBLEM<br>SOLVER.</div>
     </div>
     <div class="reveal reveal-d1">
-      <div class="about-body">
-        <p>Soy Ousama, desarrollador FullStack Junior con una trayectoria poco convencional que suma más de 6 años en administración de sistemas y hardware, 3 años en roles comerciales internacionales, y formación full-stack completada en 2025.</p>
-        <p>Tengo experiencia real lanzando proyectos desde cero: desde sistemas de gestión de facturas con Deno, hasta aplicaciones de escritorio en C# con Avalonia, pasando por plataformas web con MERN o LAMP.</p>
-        <p>Mi historial en empresas como SLIMBOOK o DeepCool me da una visión más allá del código: entiendo los procesos, los clientes, y la importancia de entregar productos que funcionen de verdad.</p>
+      <div class="about-body" id="aboutBody">
+        <p>Soy Ousama, desarrollador Full-Stack junior con una trayectoria poco convencional: más de 6 años en sistemas y hardware, 3 años en ventas internacionales y formación full-stack completada en 2025.</p>
+        <p>Tengo experiencia real lanzando proyectos desde cero, desde sistemas de facturación con Deno hasta aplicaciones de escritorio en C# con Avalonia, además de plataformas web con MERN y LAMP.</p>
+        <p>Mi etapa en empresas como SLIMBOOK y DeepCool me dio una visión que va más allá del código: entiendo procesos, clientes y la importancia de entregar productos que de verdad funcionan.</p>
       </div>
-      <div class="about-meta">
-        <div class="meta-row"><span class="meta-key">Ubicación</span><span>La Vall D'Uixó, Castellón</span></div>
-        <div class="meta-row"><span class="meta-key">Edad</span><span>31 años</span></div>
-        <div class="meta-row"><span class="meta-key">Permiso UE</span><span>Larga duración ✓</span></div>
-        <div class="meta-row"><span class="meta-key">Teléfono</span><span>+34 602 32 61 50</span></div>
-        <div class="meta-row"><span class="meta-key">Idiomas</span><span>ES · FR · EN · CA · AR</span></div>
-        <div class="meta-row"><span class="meta-key">Estado</span><span>Abierto a oportunidades</span></div>
+      <div class="about-meta" id="aboutMeta">
+        <div class="meta-row"><span class="meta-key" data-i18n="about.meta.locationKey">Ubicación</span><span data-i18n="about.meta.locationValue">La Vall D'Uixó, Castellón</span></div>
+        <div class="meta-row"><span class="meta-key" data-i18n="about.meta.ageKey">Edad</span><span data-i18n="about.meta.ageValue">31 años</span></div>
+        <div class="meta-row"><span class="meta-key" data-i18n="about.meta.permitKey">Permiso UE</span><span data-i18n="about.meta.permitValue">Larga duración ✓</span></div>
+        <div class="meta-row"><span class="meta-key" data-i18n="about.meta.phoneKey">Teléfono</span><span data-i18n="about.meta.phoneValue">+34 602 32 61 50</span></div>
+        <div class="meta-row"><span class="meta-key" data-i18n="about.meta.languagesKey">Idiomas</span><span data-i18n="about.meta.languagesValue">ES · FR · EN · CA · AR</span></div>
+        <div class="meta-row"><span class="meta-key" data-i18n="about.meta.statusKey">Estado</span><span data-i18n="about.meta.statusValue">Abierto a oportunidades</span></div>
       </div>
     </div>
   </div>
@@ -561,92 +590,91 @@
 <!-- SKILLS -->
 <section class="section" id="skills">
   <div class="ghost-num">02</div>
-  <div class="section-label">habilidades</div>
+  <div class="section-label" data-i18n="sections.skills">habilidades</div>
   <div class="skills-grid reveal">
-    <div class="skill-cat"><h3>Frontend</h3><div class="skill-tags"><span class="tag">React</span><span class="tag">Next.js</span><span class="tag">Angular</span><span class="tag">Vue</span><span class="tag">HTML / CSS</span><span class="tag">Bootstrap</span><span class="tag">Material UI</span><span class="tag">Tailwind</span><span class="tag">Deno Fresh</span></div></div>
-    <div class="skill-cat"><h3>Backend</h3><div class="skill-tags"><span class="tag">Node.js</span><span class="tag">Express.js</span><span class="tag">PHP</span><span class="tag">Python</span><span class="tag">C#</span><span class="tag">Deno</span><span class="tag">yii2</span><span class="tag">WordPress</span><span class="tag">Joomla</span></div></div>
-    <div class="skill-cat"><h3>Bases de datos</h3><div class="skill-tags"><span class="tag">PostgreSQL</span><span class="tag">MySQL</span><span class="tag">MongoDB</span><span class="tag">SQLite</span><span class="tag">Deno KV</span></div></div>
+    <div class="skill-cat"><h3 data-i18n="skills.frontend">Frontend</h3><div class="skill-tags"><span class="tag">React</span><span class="tag">Next.js</span><span class="tag">Angular</span><span class="tag">Vue</span><span class="tag">HTML / CSS</span><span class="tag">Bootstrap</span><span class="tag">Material UI</span><span class="tag">Tailwind</span><span class="tag">Deno Fresh</span></div></div>
+    <div class="skill-cat"><h3 data-i18n="skills.backend">Backend</h3><div class="skill-tags"><span class="tag">Node.js</span><span class="tag">Express.js</span><span class="tag">PHP</span><span class="tag">Python</span><span class="tag">C#</span><span class="tag">Deno</span><span class="tag">yii2</span><span class="tag">WordPress</span><span class="tag">Joomla</span></div></div>
+    <div class="skill-cat"><h3 data-i18n="skills.databases">Bases de datos</h3><div class="skill-tags"><span class="tag">PostgreSQL</span><span class="tag">MySQL</span><span class="tag">MongoDB</span><span class="tag">SQLite</span><span class="tag">Deno KV</span></div></div>
     <div class="skill-cat"><h3>Cloud & DevOps</h3><div class="skill-tags"><span class="tag">AWS</span><span class="tag">Azure</span><span class="tag">GCP</span><span class="tag">Docker</span><span class="tag">Render</span><span class="tag">Railway</span><span class="tag">Linux</span><span class="tag">Bash</span><span class="tag">PowerShell</span></div></div>
-    <div class="skill-cat"><h3>Sistemas & HW</h3><div class="skill-tags"><span class="tag">Windows 11</span><span class="tag">Ubuntu</span><span class="tag">Debian</span><span class="tag">Arch</span><span class="tag">TrueNAS</span><span class="tag">Proxmox</span><span class="tag">Montaje PC</span><span class="tag">NAS / WS</span></div></div>
-    <div class="skill-cat"><h3>Otras</h3><div class="skill-tags"><span class="tag">Odoo</span><span class="tag">Git</span><span class="tag">Avalonia UI</span><span class="tag">Figma</span><span class="tag">MySQL WB</span></div></div>
+    <div class="skill-cat"><h3 data-i18n="skills.systems">Sistemas & HW</h3><div class="skill-tags"><span class="tag">Windows 11</span><span class="tag">Ubuntu</span><span class="tag">Debian</span><span class="tag">Arch</span><span class="tag">TrueNAS</span><span class="tag">Proxmox</span><span class="tag" data-i18n="skills.pcAssembly">Montaje PC</span><span class="tag">NAS / WS</span></div></div>
+    <div class="skill-cat"><h3 data-i18n="skills.other">Otras</h3><div class="skill-tags"><span class="tag">Odoo</span><span class="tag">Git</span><span class="tag">Avalonia UI</span><span class="tag">Figma</span><span class="tag">MySQL WB</span></div></div>
   </div>
 </section>
 
 <!-- PROJECTS -->
 <section class="section" id="projects">
   <div class="ghost-num">03</div>
-  <div class="section-label">proyectos</div>
+  <div class="section-label" data-i18n="sections.projects">proyectos</div>
   <div class="projects-list">
-    <div class="project-item reveal"><div class="proj-num">01</div><div class="proj-name"><a href="https://github.com/beerandbytes/facturas" target="_blank" rel="noopener noreferrer">Sistema de Gestión de Facturas</a></div><div class="proj-stack">Deno Fresh · Deno KV · Tailwind</div></div>
-    <div class="project-item reveal reveal-d1"><div class="proj-num">02</div><div class="proj-name">Gestión de Clientes Desktop</div><div class="proj-stack">C# · Avalonia UI · SQLite</div></div>
-    <div class="project-item reveal reveal-d2"><div class="proj-num">03</div><div class="proj-name">Sistema de Gestión de Gimnasio</div><div class="proj-stack">React · Node.js · PostgreSQL</div></div>
-    <div class="project-item reveal reveal-d3"><div class="proj-num">04</div><div class="proj-name">Reservas para Taller Mecánico</div><div class="proj-stack">PHP · Bootstrap · MySQL</div></div>
-    <div class="project-item reveal"><div class="proj-num">05</div><div class="proj-name">Portfolio para Diseñador 3D</div><div class="proj-stack">React · Vite.js</div></div>
+    <div class="project-item reveal"><div class="proj-num">01</div><div class="proj-name"><a href="https://github.com/beerandbytes/facturas" target="_blank" rel="noopener noreferrer" data-i18n="projects.p1">Sistema de Gestión de Facturas</a></div><div class="proj-stack">Deno Fresh · Deno KV · Tailwind</div></div>
+    <div class="project-item reveal reveal-d1"><div class="proj-num">02</div><div class="proj-name"><a href="https://github.com/beerandbytes/sistema_gestion_clientes_windows" target="_blank" data-i18n="projects.p2">Gestión de Clientes Desktop</a></div><div class="proj-stack">C# · Avalonia UI · SQLite</div></div>
+    <div class="project-item reveal reveal-d2"><div class="proj-num">03</div><div class="proj-name"><a href="https://github.com/beerandbytes/fitness_app" target="_blank" data-i18n="projects.p3">Sistema de Gestión de Gimnasio</a></div><div class="proj-stack">React · Node.js · PostgreSQL</div></div>
+    <div class="project-item reveal reveal-d3"><div class="proj-num">04</div><div class="proj-name"><a href="https://github.com/beerandbytes/taller_mecanico" target="_blank" data-i18n="projects.p4">Reservas para Taller Mecánico</a></div><div class="proj-stack">PHP · Bootstrap · MySQL</div></div>
+    <div class="project-item reveal"><div class="proj-num">05</div><div class="proj-name"><a href="https://beerandbytes.github.io/portfolio_iker/" target="_blank" data-i18n="projects.p5">Portfolio para Diseñador 3D</a></div><div class="proj-stack">React · Vite.js</div></div>
   </div>
 </section>
 
 <!-- EXPERIENCE -->
 <section class="section" id="experience">
   <div class="ghost-num">04</div>
-  <div class="section-label">experiencia</div>
+  <div class="section-label" data-i18n="sections.experience">experiencia</div>
   <div class="exp-list">
     <div class="exp-item reveal">
-      <div class="exp-date">Abr 2025 –<br>Sep 2025</div>
-      <div><div class="exp-company">SLIMBOOK</div><div class="exp-role">Comercial IT · Product Manager · Técnico RMA — Paterna, Valencia</div><div class="exp-desc"><ul><li>Gestión de pedidos, stocks y clientes con Odoo.</li><li>Montaje de ordenadores y portátiles con instalación de W11, Ubuntu, Fedora, Proxmox, TrueNAS.</li><li>Captación de clientes: Meta World Madrid 2025 y OWN Valencia 2025.</li><li>Soporte remoto y troubleshooting.</li></ul></div></div>
+      <div class="exp-date" id="expDate1">Abr 2025 –<br>Sep 2025</div>
+      <div><div class="exp-company">SLIMBOOK</div><div class="exp-role" id="expRole1">Comercial IT · Product Manager · Técnico RMA — Paterna, Valencia</div><div class="exp-desc"><ul><li data-i18n="experience.e1b1">Gestión de pedidos, stocks y clientes con Odoo.</li><li data-i18n="experience.e1b2">Montaje de ordenadores y portátiles con instalación de W11, Ubuntu, Fedora, Proxmox, TrueNAS.</li><li data-i18n="experience.e1b3">Captación de clientes: Meta World Madrid 2025 y OWN Valencia 2025.</li><li data-i18n="experience.e1b4">Soporte remoto y troubleshooting.</li></ul></div></div>
     </div>
     <div class="exp-item reveal">
-      <div class="exp-date">Oct 2024 –<br>Ene 2025</div>
-      <div><div class="exp-company">AMFYTECH S.L.</div><div class="exp-role">Comercial Telecomunicaciones — La Vall D'Uixó</div><div class="exp-desc"><ul><li>Prospección B2B: cold calling, cold mailing, LinkedIn.</li><li>Venta de infraestructura de red: switches, racks, fibra óptica.</li><li>Redacción de anexos para licitaciones públicas.</li></ul></div></div>
+      <div class="exp-date" id="expDate2">Oct 2024 –<br>Ene 2025</div>
+      <div><div class="exp-company">AMFYTECH S.L.</div><div class="exp-role" id="expRole2">Comercial Telecomunicaciones — La Vall D'Uixó</div><div class="exp-desc"><ul><li data-i18n="experience.e2b1">Prospección B2B: cold calling, cold mailing, LinkedIn.</li><li data-i18n="experience.e2b2">Venta de infraestructura de red: switches, racks, fibra óptica.</li><li data-i18n="experience.e2b3">Redacción de anexos para licitaciones públicas.</li></ul></div></div>
     </div>
     <div class="exp-item reveal">
-      <div class="exp-date">Mar 2023 –<br>Mar 2024</div>
-      <div><div class="exp-company">DEEPCOOL BEIJING CO. LTD</div><div class="exp-role">Country Manager Iberia & Sur de Francia — Remoto</div><div class="exp-desc"><ul><li>Gestión del canal de Iberia: Globomatik, CompuSpain, PcComponentes, Coolmod, Wipoid.</li><li>Planificación de campañas, stocks, sellouts y MDF.</li><li>Visitas mensuales a clientes y reporte a HQ Beijing.</li></ul></div></div>
+      <div class="exp-date" id="expDate3">Mar 2023 –<br>Mar 2024</div>
+      <div><div class="exp-company">DEEPCOOL BEIJING CO. LTD</div><div class="exp-role" id="expRole3">Country Manager Iberia & Sur de Francia — Remoto</div><div class="exp-desc"><ul><li data-i18n="experience.e3b1">Gestión del canal de Iberia: Globomatik, CompuSpain, PcComponentes, Coolmod, Wipoid.</li><li data-i18n="experience.e3b2">Planificación de campañas, stocks, sellouts y MDF.</li><li data-i18n="experience.e3b3">Visitas mensuales a clientes y reporte a HQ Beijing.</li></ul></div></div>
     </div>
     <div class="exp-item reveal">
-      <div class="exp-date">Ene 2018 –<br>Feb 2023</div>
-      <div><div class="exp-company">COOLMOD INFORMÁTICA</div><div class="exp-role">Técnico RMA / Product Manager / Jefe de Taller — Almazora</div><div class="exp-desc"><ul><li><strong>Product Manager (2022):</strong> campañas con NVIDIA, AMD y Cooler Master para streamers.</li><li><strong>Jefe de Taller (2020–2022):</strong> gestión de cola de montaje.</li><li><strong>Técnico (2019–2020):</strong> montaje, instalación y testeo de equipos.</li></ul></div></div>
+      <div class="exp-date" id="expDate4">Ene 2018 –<br>Feb 2023</div>
+      <div><div class="exp-company">COOLMOD INFORMÁTICA</div><div class="exp-role" id="expRole4">Técnico RMA / Product Manager / Jefe de Taller — Almazora</div><div class="exp-desc"><ul><li id="exp4b1"><strong>Product Manager (2022):</strong> campañas con NVIDIA, AMD y Cooler Master para streamers.</li><li id="exp4b2"><strong>Jefe de Taller (2020–2022):</strong> gestión de cola de montaje.</li><li id="exp4b3"><strong>Técnico (2019–2020):</strong> montaje, instalación y testeo de equipos.</li></ul></div></div>
     </div>
     <div class="exp-item reveal">
-      <div class="exp-date">Jun 2018 –<br>Oct 2018</div>
-      <div><div class="exp-company">JMI BRUXELLES</div><div class="exp-role">Prácticas Backend — Bruselas, Bélgica</div><div class="exp-desc"><ul><li>Mocking, wireframing y prototipado de app móvil.</li><li>Diseño de base de datos en MySQL Workbench.</li><li>Backend con yii2 PHP y Composer.</li></ul></div></div>
+      <div class="exp-date" id="expDate5">Jun 2018 –<br>Oct 2018</div>
+      <div><div class="exp-company">JMI BRUXELLES</div><div class="exp-role" id="expRole5">Prácticas Backend — Bruselas, Bélgica</div><div class="exp-desc"><ul><li data-i18n="experience.e5b1">Mocking, wireframing y prototipado de app móvil.</li><li data-i18n="experience.e5b2">Diseño de base de datos en MySQL Workbench.</li><li data-i18n="experience.e5b3">Backend con yii2 PHP y Composer.</li></ul></div></div>
     </div>
   </div>
 </section>
 
 <!-- LANGUAGES -->
 <section class="section" style="padding-bottom:0">
-  <div class="section-label">idiomas</div>
+  <div class="section-label" data-i18n="sections.languages">idiomas</div>
   <div class="lang-wrap reveal">
-    <div class="lang-item"><div class="lang-name">Español</div><div class="lang-level">Nativo · C2</div><div class="lang-bar"><div class="lang-fill" style="width:100%"></div></div></div>
-    <div class="lang-item"><div class="lang-name">Francés</div><div class="lang-level">Nativo · C2</div><div class="lang-bar"><div class="lang-fill" style="width:100%"></div></div></div>
-    <div class="lang-item"><div class="lang-name">Inglés</div><div class="lang-level">Alto · C1</div><div class="lang-bar"><div class="lang-fill" style="width:87%"></div></div></div>
-    <div class="lang-item"><div class="lang-name">Catalán</div><div class="lang-level">Intermedio · B2</div><div class="lang-bar"><div class="lang-fill" style="width:68%"></div></div></div>
-    <div class="lang-item"><div class="lang-name">Valenciano</div><div class="lang-level">Intermedio · B2</div><div class="lang-bar"><div class="lang-fill" style="width:68%"></div></div></div>
-    <div class="lang-item"><div class="lang-name">Árabe</div><div class="lang-level">Básico · A2</div><div class="lang-bar"><div class="lang-fill" style="width:22%"></div></div></div>
+    <div class="lang-item"><div class="lang-name" data-i18n="languageCards.spanishName">Español</div><div class="lang-level" data-i18n="languageCards.spanishLevel">Nativo · C2</div><div class="lang-bar"><div class="lang-fill" style="width:100%"></div></div></div>
+    <div class="lang-item"><div class="lang-name" data-i18n="languageCards.frenchName">Francés</div><div class="lang-level" data-i18n="languageCards.frenchLevel">Nativo · C2</div><div class="lang-bar"><div class="lang-fill" style="width:100%"></div></div></div>
+    <div class="lang-item"><div class="lang-name" data-i18n="languageCards.englishName">Inglés</div><div class="lang-level" data-i18n="languageCards.englishLevel">Alto · C1</div><div class="lang-bar"><div class="lang-fill" style="width:87%"></div></div></div>
+    <div class="lang-item"><div class="lang-name" data-i18n="languageCards.catalanName">Catalán</div><div class="lang-level" data-i18n="languageCards.catalanLevel">Intermedio · B2</div><div class="lang-bar"><div class="lang-fill" style="width:68%"></div></div></div>
+    <div class="lang-item"><div class="lang-name" data-i18n="languageCards.valencianName">Valenciano</div><div class="lang-level" data-i18n="languageCards.valencianLevel">Intermedio · B2</div><div class="lang-bar"><div class="lang-fill" style="width:68%"></div></div></div>
+    <div class="lang-item"><div class="lang-name" data-i18n="languageCards.arabicName">Árabe</div><div class="lang-level" data-i18n="languageCards.arabicLevel">Básico · A2</div><div class="lang-bar"><div class="lang-fill" style="width:22%"></div></div></div>
   </div>
 </section>
 
 <!-- CONTACT -->
 <section class="section" id="contact">
   <div class="ghost-num">05</div>
-  <div class="section-label">contacto</div>
+  <div class="section-label" data-i18n="sections.contact">contacto</div>
   <div class="contact-grid">
     <div class="reveal">
-      <div class="contact-title">HABLEMOS<br>DE TU<br>PROYECTO.</div>
+      <div class="contact-title" id="contactTitle">HABLEMOS<br>DE TU<br>PROYECTO.</div>
       <div class="contact-email">ousama.merrakchi<br>@gmail.com</div>
     </div>
     <div class="contact-links reveal reveal-d1">
       <a class="c-link" href="https://github.com/beerandbytes" target="_blank">GitHub — beerandbytes <span>↗</span></a>
       <a class="c-link" href="https://www.linkedin.com/in/ousama-merrakchi/" target="_blank">LinkedIn — ousama-merrakchi <span>↗</span></a>
-      <a class="c-link" href="https://beerandbytes.github.io/portfolio_2026/" target="_blank">Portfolio Online <span>↗</span></a>
       <a class="c-link" href="tel:+34602326150">+34 602 32 61 50 <span>→</span></a>
     </div>
   </div>
 </section>
 
 <footer>
-  <div class="left">2026 Ousama Merrakchi </div>
-  <div class="right">La Vall D'Uixó, Castellón</div>
+  <div class="left" data-i18n="footer.left">2026 Ousama Merrakchi</div>
+  <div class="right" data-i18n="footer.right">La Vall D'Uixó, Castellón</div>
 </footer>
 
 <script>
@@ -973,5 +1001,395 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   });
 });
 </script>
+<script>
+(() => {
+  const STORAGE_KEY = 'portfolio_lang';
+  const defaultLang = 'es';
+  let currentLang = defaultLang;
+  const cursorEl = document.getElementById('cursor');
+
+  const base = {
+    dataI18n: {},
+    aboutTitleHtml: document.getElementById('aboutTitle')?.innerHTML || '',
+    aboutBodyHtml: document.getElementById('aboutBody')?.innerHTML || '',
+    contactTitleHtml: document.getElementById('contactTitle')?.innerHTML || '',
+    previewFormTitleHtml: document.getElementById('previewFormTitle')?.innerHTML || '',
+    previewNamePlaceholder: document.getElementById('previewNameInput')?.placeholder || '',
+    previewEmailPlaceholder: document.getElementById('previewEmailInput')?.placeholder || '',
+    previewProjectPlaceholder: document.getElementById('previewProjectInput')?.placeholder || '',
+    expDates: [1, 2, 3, 4, 5].map(i => document.getElementById(`expDate${i}`)?.innerHTML || ''),
+    expRoles: [1, 2, 3, 4, 5].map(i => document.getElementById(`expRole${i}`)?.textContent || ''),
+    exp4Bullets: ['exp4b1', 'exp4b2', 'exp4b3'].map(id => document.getElementById(id)?.innerHTML || ''),
+    ideTabs: Array.from(document.querySelectorAll('.ide-tab')).map(t => t.textContent || ''),
+    snippets: {
+      role: snippets?.[0]?.[5]?.t || '',
+      hire: snippets?.[0]?.[17]?.t || '',
+      send: snippets?.[2]?.[23]?.t || '',
+      dashComment: snippets?.[1]?.[12]?.t || '',
+      apiComment: snippets?.[3]?.[0]?.t || '',
+    },
+  };
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    base.dataI18n[key] = el.textContent || '';
+  });
+
+  const translations = {
+    en: {
+      metaTitle: 'Ousama Merrakchi — Full-Stack Developer',
+      values: {
+        'nav.about': 'about me',
+        'nav.skills': 'skills',
+        'nav.projects': 'projects',
+        'nav.experience': 'experience',
+        'nav.contact': 'contact',
+        'hero.tagline1': 'FULL-STACK DEVELOPER',
+        'hero.tagline2': 'MULTILINGUAL · 5 LANGUAGES',
+        'hero.tagline3': 'AVAILABLE FOR PROJECTS',
+        'sections.about': 'about me',
+        'sections.skills': 'skills',
+        'sections.projects': 'projects',
+        'sections.experience': 'experience',
+        'sections.languages': 'languages',
+        'sections.contact': 'contact',
+        'about.meta.locationKey': 'Location',
+        'about.meta.ageKey': 'Age',
+        'about.meta.ageValue': '31 years old',
+        'about.meta.permitKey': 'EU Work Permit',
+        'about.meta.permitValue': 'Long-term residency ✓',
+        'about.meta.phoneKey': 'Phone',
+        'about.meta.languagesKey': 'Languages',
+        'about.meta.statusKey': 'Status',
+        'about.meta.statusValue': 'Open to opportunities',
+        'skills.databases': 'Databases',
+        'skills.systems': 'Systems & HW',
+        'skills.pcAssembly': 'PC Assembly',
+        'skills.other': 'Other',
+        'projects.p1': 'Invoice Management System',
+        'projects.p2': 'Desktop Client Management',
+        'projects.p3': 'Gym Management System',
+        'projects.p4': 'Auto Repair Booking System',
+        'projects.p5': 'Portfolio for a 3D Designer',
+        'experience.e1b1': 'Managed orders, inventory, and clients with Odoo.',
+        'experience.e1b2': 'Assembled desktops and laptops, installing Windows 11, Ubuntu, Fedora, Proxmox, and TrueNAS.',
+        'experience.e1b3': 'Generated new leads at Meta World Madrid 2025 and OWN Valencia 2025.',
+        'experience.e1b4': 'Delivered remote support and technical troubleshooting.',
+        'experience.e2b1': 'Handled B2B prospecting through cold calls, cold email, and LinkedIn outreach.',
+        'experience.e2b2': 'Sold network infrastructure solutions: switches, racks, and fiber optics.',
+        'experience.e2b3': 'Prepared technical annexes for public tenders.',
+        'experience.e3b1': 'Managed Iberia channel accounts: Globomatik, CompuSpain, PcComponentes, Coolmod, and Wipoid.',
+        'experience.e3b2': 'Planned campaigns, inventory, sell-out actions, and MDF.',
+        'experience.e3b3': 'Conducted monthly client visits and reported directly to HQ in Beijing.',
+        'experience.e5b1': 'Created mockups, wireframes, and mobile app prototypes.',
+        'experience.e5b2': 'Designed database structures in MySQL Workbench.',
+        'experience.e5b3': 'Implemented backend features with yii2 PHP and Composer.',
+        'languageCards.spanishName': 'Spanish',
+        'languageCards.spanishLevel': 'Native · C2',
+        'languageCards.frenchName': 'French',
+        'languageCards.frenchLevel': 'Native · C2',
+        'languageCards.englishName': 'English',
+        'languageCards.englishLevel': 'Advanced · C1',
+        'languageCards.catalanName': 'Catalan',
+        'languageCards.catalanLevel': 'Intermediate · B2',
+        'languageCards.valencianName': 'Valencian',
+        'languageCards.valencianLevel': 'Intermediate · B2',
+        'languageCards.arabicName': 'Arabic',
+        'languageCards.arabicLevel': 'Basic · A2',
+        'contact.portfolioLink': 'Online Portfolio',
+        'preview.cardRole': 'Full-Stack Developer',
+        'preview.cardBtn': 'Hire me →',
+        'preview.metricsTitle': '— dev metrics',
+        'preview.statProjects': 'Projects',
+        'preview.statLanguages': 'Languages',
+        'preview.statYears': 'Yrs exp',
+        'preview.formNameLabel': 'Your name',
+        'preview.formEmailLabel': 'Email',
+        'preview.formProjectLabel': 'Project',
+        'preview.formSubmit': 'Send message →',
+      },
+      aboutTitleHtml: 'DEVELOPER.<br>BUILDER.<br>PROBLEM<br>SOLVER.',
+      aboutBodyHtml: '<p>I\'m Ousama, a junior full-stack developer with an uncommon path: 6+ years in systems and hardware, 3 years in international sales, and full-stack training completed in 2025.</p><p>I have hands-on experience launching projects from scratch, from invoicing systems in Deno to desktop apps in C# with Avalonia, plus web platforms built with MERN and LAMP.</p><p>My time at companies like SLIMBOOK and DeepCool gave me a perspective beyond code: I understand processes, customers, and how to ship products that truly work.</p>',
+      contactTitleHtml: 'LET\'S BUILD<br>YOUR<br>PROJECT.',
+      previewFormTitleHtml: 'GET IN<br>TOUCH.',
+      placeholders: ['John Doe', 'john@company.com', 'SaaS / E-commerce / App...'],
+      expDates: ['Apr 2025 –<br>Sep 2025', 'Oct 2024 –<br>Jan 2025', 'Mar 2023 –<br>Mar 2024', 'Jan 2018 –<br>Feb 2023', 'Jun 2018 –<br>Oct 2018'],
+      expRoles: [
+        'IT Sales · Product Manager · RMA Technician — Paterna, Valencia',
+        'Telecom Sales Representative — La Vall D\'Uixó',
+        'Country Manager for Iberia & Southern France — Remote',
+        'RMA Technician / Product Manager / Workshop Lead — Almazora',
+        'Backend Intern — Brussels, Belgium',
+      ],
+      exp4Bullets: [
+        '<strong>Product Manager (2022):</strong> ran campaigns with NVIDIA, AMD, and Cooler Master for streamers.',
+        '<strong>Workshop Lead (2020–2022):</strong> managed the assembly queue and team throughput.',
+        '<strong>Technician (2019–2020):</strong> assembled, installed, and tested complete systems.',
+      ],
+      ideTabs: ['Card', 'Dashboard', 'Form', 'API'],
+      snippetPatches: {
+        role: '<span class="t-str">"Full-Stack Developer"</span>',
+        hire: '<span class="t-tag">&lt;Button&gt;</span>Hire me →<span class="t-tag">&lt;/Button&gt;</span>',
+        send: '        Send →',
+        dashComment: '<span class="t-cmt">// animate counters on mount</span>',
+        apiComment: '<span class="t-cmt">// Express.js REST endpoint</span>',
+      },
+      api: { role: '"Full-Stack Developer"', location: '"Castellón, Spain"', experience: '"7+ years"' },
+    },
+    fr: {
+      metaTitle: 'Ousama Merrakchi — Développeur Full-Stack',
+      values: {
+        'nav.about': 'à propos',
+        'nav.skills': 'compétences',
+        'nav.projects': 'projets',
+        'nav.experience': 'expérience',
+        'nav.contact': 'contact',
+        'hero.tagline1': 'DÉVELOPPEUR FULL-STACK',
+        'hero.tagline2': 'MULTILINGUE · 5 LANGUES',
+        'hero.tagline3': 'DISPONIBLE POUR VOS PROJETS',
+        'sections.about': 'à propos',
+        'sections.skills': 'compétences',
+        'sections.projects': 'projets',
+        'sections.experience': 'expérience',
+        'sections.languages': 'langues',
+        'sections.contact': 'contact',
+        'about.meta.locationKey': 'Localisation',
+        'about.meta.ageKey': 'Âge',
+        'about.meta.ageValue': '31 ans',
+        'about.meta.permitKey': 'Permis UE',
+        'about.meta.permitValue': 'Résidence longue durée ✓',
+        'about.meta.phoneKey': 'Téléphone',
+        'about.meta.languagesKey': 'Langues',
+        'about.meta.statusKey': 'Statut',
+        'about.meta.statusValue': 'Ouvert aux opportunités',
+        'skills.databases': 'Bases de données',
+        'skills.systems': 'Systèmes & HW',
+        'skills.pcAssembly': 'Assemblage PC',
+        'skills.other': 'Autres',
+        'projects.p1': 'Système de Gestion des Factures',
+        'projects.p2': 'Gestion Clients Desktop',
+        'projects.p3': 'Système de Gestion de Salle de Sport',
+        'projects.p4': 'Réservation pour Atelier Mécanique',
+        'projects.p5': 'Portfolio pour Designer 3D',
+        'experience.e1b1': 'Gestion des commandes, des stocks et des clients avec Odoo.',
+        'experience.e1b2': 'Assemblage de PC fixes et portables avec installation de Windows 11, Ubuntu, Fedora, Proxmox et TrueNAS.',
+        'experience.e1b3': 'Prospection de nouveaux clients lors de Meta World Madrid 2025 et OWN Valencia 2025.',
+        'experience.e1b4': 'Support à distance et dépannage technique.',
+        'experience.e2b1': 'Prospection B2B via cold calling, cold emailing et LinkedIn.',
+        'experience.e2b2': 'Vente d\'infrastructures réseau: switches, racks et fibre optique.',
+        'experience.e2b3': 'Rédaction d\'annexes techniques pour des appels d\'offres publics.',
+        'experience.e3b1': 'Gestion du canal Ibérie: Globomatik, CompuSpain, PcComponentes, Coolmod et Wipoid.',
+        'experience.e3b2': 'Planification des campagnes, des stocks, du sell-out et du MDF.',
+        'experience.e3b3': 'Visites clients mensuelles et reporting au siège à Pékin.',
+        'experience.e5b1': 'Réalisation de maquettes, wireframes et prototypes d\'application mobile.',
+        'experience.e5b2': 'Conception de bases de données avec MySQL Workbench.',
+        'experience.e5b3': 'Backend développé avec yii2 PHP et Composer.',
+        'languageCards.spanishName': 'Espagnol',
+        'languageCards.spanishLevel': 'Natif · C2',
+        'languageCards.frenchName': 'Français',
+        'languageCards.frenchLevel': 'Natif · C2',
+        'languageCards.englishName': 'Anglais',
+        'languageCards.englishLevel': 'Avancé · C1',
+        'languageCards.catalanName': 'Catalan',
+        'languageCards.catalanLevel': 'Intermédiaire · B2',
+        'languageCards.valencianName': 'Valencien',
+        'languageCards.valencianLevel': 'Intermédiaire · B2',
+        'languageCards.arabicName': 'Arabe',
+        'languageCards.arabicLevel': 'Élémentaire · A2',
+        'contact.portfolioLink': 'Portfolio en ligne',
+        'preview.cardRole': 'Développeur Full-Stack',
+        'preview.cardBtn': 'Contactez-moi →',
+        'preview.metricsTitle': '— métriques dev',
+        'preview.statProjects': 'Projets',
+        'preview.statLanguages': 'Langues',
+        'preview.statYears': 'Ans exp.',
+        'preview.formNameLabel': 'Votre nom',
+        'preview.formEmailLabel': 'Email',
+        'preview.formProjectLabel': 'Projet',
+        'preview.formSubmit': 'Envoyer le message →',
+      },
+      aboutTitleHtml: 'DÉVELOPPEUR.<br>CRÉATEUR.<br>RÉSOLUTION<br>DE PROBLÈMES.',
+      aboutBodyHtml: '<p>Je suis Ousama, développeur full-stack junior avec un parcours atypique: plus de 6 ans en systèmes et matériel, 3 ans en vente internationale et une formation full-stack finalisée en 2025.</p><p>J\'ai une vraie expérience de lancement de projets de zéro, des systèmes de facturation avec Deno aux applications desktop en C# avec Avalonia, ainsi que des plateformes web MERN et LAMP.</p><p>Mon expérience chez SLIMBOOK et DeepCool m\'a apporté une vision au-delà du code: je comprends les processus, les clients et l\'importance de livrer des produits fiables.</p>',
+      contactTitleHtml: 'PARLONS<br>DE VOTRE<br>PROJET.',
+      previewFormTitleHtml: 'PARLONS<br>DE VOUS.',
+      placeholders: ['Jean Dupont', 'jean@entreprise.fr', 'SaaS / E-commerce / App...'],
+      expDates: ['Avr 2025 –<br>Sep 2025', 'Oct 2024 –<br>Jan 2025', 'Mar 2023 –<br>Mar 2024', 'Jan 2018 –<br>Fév 2023', 'Juin 2018 –<br>Oct 2018'],
+      expRoles: [
+        'Commercial IT · Product Manager · Technicien RMA — Paterna, Valence',
+        'Commercial Télécom — La Vall D\'Uixó',
+        'Country Manager Ibérie & Sud de la France — Télétravail',
+        'Technicien RMA / Product Manager / Chef d\'Atelier — Almazora',
+        'Stage Backend — Bruxelles, Belgique',
+      ],
+      exp4Bullets: [
+        '<strong>Product Manager (2022):</strong> campagnes avec NVIDIA, AMD et Cooler Master pour des streamers.',
+        '<strong>Chef d\'atelier (2020–2022):</strong> gestion du flux de montage.',
+        '<strong>Technicien (2019–2020):</strong> assemblage, installation et tests de machines.',
+      ],
+      ideTabs: ['Carte', 'Tableau', 'Formulaire', 'API'],
+      snippetPatches: {
+        role: '<span class="t-str">"Développeur Full-Stack"</span>',
+        hire: '<span class="t-tag">&lt;Button&gt;</span>Contactez-moi →<span class="t-tag">&lt;/Button&gt;</span>',
+        send: '        Envoyer →',
+        dashComment: '<span class="t-cmt">// animer compteurs au chargement</span>',
+        apiComment: '<span class="t-cmt">// endpoint REST Express.js</span>',
+      },
+      api: { role: '"Développeur Full-Stack"', location: '"Castellón, Espagne"', experience: '"7+ ans"' },
+    },
+  };
+
+  const apiBase = { role: '"FullStack Developer"', location: '"Castellón, Spain"', experience: '"7+ years"' };
+
+  function getActiveTabIndex() {
+    const active = document.querySelector('.ide-tab.active');
+    return active ? parseInt(active.dataset.tab, 10) : 0;
+  }
+
+  function setActiveLangButton(lang) {
+    document.querySelectorAll('.lang-pill').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.lang === lang);
+    });
+  }
+
+  function patchSnippets(langPack) {
+    if (!snippets || !snippets[0]) return;
+    const source = langPack?.snippetPatches || {
+      role: base.snippets.role.match(/<span class="t-str">".*"<\/span>/)?.[0] || '<span class="t-str">"Desarrollador Full-Stack"</span>',
+      hire: base.snippets.hire,
+      send: base.snippets.send,
+      dashComment: base.snippets.dashComment,
+      apiComment: base.snippets.apiComment,
+    };
+    snippets[0][5].t = `    role: ${source.role},`;
+    snippets[0][17].t = `      ${source.hire}`;
+    snippets[2][23].t = source.send;
+    snippets[1][12].t = source.dashComment;
+    snippets[3][0].t = source.apiComment;
+  }
+
+  function applyLang(lang) {
+    const langPack = translations[lang];
+    currentLang = lang;
+    document.documentElement.lang = lang;
+    document.title = langPack?.metaTitle || 'Ousama Merrakchi — Desarrollador Full-Stack';
+
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      el.textContent = langPack?.values?.[key] ?? base.dataI18n[key];
+    });
+
+    const aboutTitle = document.getElementById('aboutTitle');
+    const aboutBody = document.getElementById('aboutBody');
+    const contactTitle = document.getElementById('contactTitle');
+    const previewFormTitle = document.getElementById('previewFormTitle');
+    const nameInput = document.getElementById('previewNameInput');
+    const emailInput = document.getElementById('previewEmailInput');
+    const projectInput = document.getElementById('previewProjectInput');
+
+    if (aboutTitle) aboutTitle.innerHTML = langPack?.aboutTitleHtml || base.aboutTitleHtml;
+    if (aboutBody) aboutBody.innerHTML = langPack?.aboutBodyHtml || base.aboutBodyHtml;
+    if (contactTitle) contactTitle.innerHTML = langPack?.contactTitleHtml || base.contactTitleHtml;
+    if (previewFormTitle) previewFormTitle.innerHTML = langPack?.previewFormTitleHtml || base.previewFormTitleHtml;
+    if (nameInput) nameInput.placeholder = langPack?.placeholders?.[0] || base.previewNamePlaceholder;
+    if (emailInput) emailInput.placeholder = langPack?.placeholders?.[1] || base.previewEmailPlaceholder;
+    if (projectInput) projectInput.placeholder = langPack?.placeholders?.[2] || base.previewProjectPlaceholder;
+
+    [1, 2, 3, 4, 5].forEach((i, idx) => {
+      const dateEl = document.getElementById(`expDate${i}`);
+      const roleEl = document.getElementById(`expRole${i}`);
+      if (dateEl) dateEl.innerHTML = langPack?.expDates?.[idx] || base.expDates[idx];
+      if (roleEl) roleEl.textContent = langPack?.expRoles?.[idx] || base.expRoles[idx];
+    });
+
+    ['exp4b1', 'exp4b2', 'exp4b3'].forEach((id, idx) => {
+      const el = document.getElementById(id);
+      if (el) el.innerHTML = langPack?.exp4Bullets?.[idx] || base.exp4Bullets[idx];
+    });
+
+    document.querySelectorAll('.ide-tab').forEach((tab, idx) => {
+      tab.textContent = langPack?.ideTabs?.[idx] || base.ideTabs[idx];
+    });
+
+    patchSnippets(langPack);
+    setActiveLangButton(lang);
+
+    const activeTab = getActiveTabIndex();
+    if (typeof typeCode === 'function') typeCode(activeTab);
+    if (activeTab === 3 && typeof animateAPI === 'function') animateAPI();
+  }
+
+  window.animateAPI = function animateAPILocalized() {
+    const body = document.getElementById('apiBody');
+    if (!body) return;
+    const apiPack = translations[currentLang]?.api || apiBase;
+    const apiData = [
+      { key: '"name"', val: '"Ousama Merrakchi"' },
+      { key: '"role"', val: apiPack.role },
+      { key: '"location"', val: apiPack.location },
+      { key: '"available"', val: 'true' },
+      { key: '"stack"', val: '["React","Node","PHP","Docker"]' },
+      { key: '"languages"', val: '["ES","FR","EN","CA","AR"]' },
+      { key: '"experience"', val: apiPack.experience },
+    ];
+
+    body.innerHTML = '{\n';
+    let i = 0;
+    function addField() {
+      if (i >= apiData.length) {
+        body.innerHTML += '}';
+        return;
+      }
+      const d = apiData[i];
+      const comma = i < apiData.length - 1 ? ',' : '';
+      const line = document.createElement('div');
+      line.style.paddingLeft = '12px';
+      line.innerHTML = `<span class="api-key">${d.key}</span>: <span class="api-val"></span>${comma}`;
+      body.appendChild(line);
+
+      const valEl = line.querySelector('.api-val');
+      let vi = 0;
+      function typeVal() {
+        if (vi <= d.val.length) {
+          valEl.textContent = d.val.slice(0, vi);
+          vi++;
+          setTimeout(typeVal, 18 + Math.random() * 20);
+        } else {
+          i++;
+          setTimeout(addField, 80);
+        }
+      }
+      typeVal();
+    }
+    setTimeout(addField, 400);
+  };
+  try { animateAPI = window.animateAPI; } catch (_) {}
+
+  document.querySelectorAll('.lang-pill').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const lang = btn.dataset.lang || defaultLang;
+      try { localStorage.setItem(STORAGE_KEY, lang); } catch (_) {}
+      applyLang(lang);
+    });
+    btn.addEventListener('mouseenter', () => cursorEl?.classList.add('hover'));
+    btn.addEventListener('mouseleave', () => cursorEl?.classList.remove('hover'));
+  });
+
+  let initialLang = defaultLang;
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved && ['es', 'en', 'fr'].includes(saved)) {
+      initialLang = saved;
+    } else {
+      const browser = (navigator.language || '').toLowerCase();
+      initialLang = browser.startsWith('en') ? 'en' : browser.startsWith('fr') ? 'fr' : 'es';
+      localStorage.setItem(STORAGE_KEY, initialLang);
+    }
+  } catch (_) {}
+
+  applyLang(initialLang);
+})();
+</script>
 </body>
 </html>
+
+
